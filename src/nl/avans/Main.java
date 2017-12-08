@@ -1,9 +1,13 @@
 package nl.avans;
 
+import nl.avans.ui.NetflixWindow;
+
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Szonja heeft honger");
+
+        //Create UI
+        new NetflixWindow().run();
 
     }
 }
