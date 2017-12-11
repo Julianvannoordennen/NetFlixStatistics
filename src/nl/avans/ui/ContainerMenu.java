@@ -30,15 +30,7 @@ public class ContainerMenu extends JPanel {
         for (String item : menuItems) {
 
             //Create panel
-            JPanel menuPanel = new JPanel();
-            menuPanel.setOpaque(false);
-
-            //Create panel text
-            JLabel menuItem = new JLabel(item);
-            menuItem.setForeground(NetflixWindow.FOURTH_COLOR);
-
-            //Add panel and text
-            menuPanel.add(menuItem);
+            JPanel menuPanel = new ContainerMenuButton(item);
             this.add(menuPanel);
         }
     }

@@ -16,7 +16,7 @@ public class ContainerContentHolder extends JPanel {
 
         //Set container layout
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50));
+        this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
         this.setOpaque(false);
 
         //Create content container

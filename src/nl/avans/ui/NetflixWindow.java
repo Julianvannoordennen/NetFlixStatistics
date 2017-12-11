@@ -12,8 +12,10 @@ public class NetflixWindow implements Runnable {
     private JFrame frame;
     static final Color PRIMARY_COLOR = Color.BLACK;
     static final Color SECONDARY_COLOR = new Color(215,23,31);
-    static final Color THIRD_COLOR = new Color(0,0,0,192);
+    static final Color THIRD_COLOR = new Color(255,255,255,64);
     static final Color FOURTH_COLOR = Color.WHITE;
+    static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 20);
+    static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 14);
 
 
     @Override
