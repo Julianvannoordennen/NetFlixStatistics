@@ -12,14 +12,22 @@ public class ContainerContentHolder extends JPanel {
         this.createComponents();
     }
 
+    public void viewContainer(JPanel container) {
+
+        //Make them invisible
+        this.removeAll();
+        this.repaint();
+        this.revalidate();
+        this.add(container);
+        this.repaint();
+        this.revalidate();
+    }
+
     private void createComponents() {
 
         //Set container layout
-        this.setLayout(new BorderLayout());
+        this.setLayout(new CardLayout());
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
         this.setOpaque(false);
-
-        //Create content container
-        this.add(new ContainerContent(), BorderLayout.CENTER);
     }
 }

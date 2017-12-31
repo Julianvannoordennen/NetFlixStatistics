@@ -1,5 +1,7 @@
 package nl.avans.ui;
 
+import nl.avans.logic.ContainerContentLoader;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +17,8 @@ public class NetflixWindow implements Runnable {
     static final Color THIRD_COLOR = new Color(255,255,255,64);
     static final Color FOURTH_COLOR = Color.WHITE;
     static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 20);
+    static final Font FONT_BIG_ENABLED = new Font("Helvetica Neue", Font.BOLD, 20);
     static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 14);
-
 
     @Override
     public void run() {
@@ -46,10 +48,18 @@ public class NetflixWindow implements Runnable {
         //Layout
         container.setLayout(new BorderLayout());
 
+        //Create menu items for menu
+        ContainerContentHolder holder = new ContainerContentHolder();
+        ContainerMenuButton[] menuItems = {
+            new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts())),
+            new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles())),
+            new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress()))
+        };
+
         //Add containers
-        container.add(new ContainerMenu(), BorderLayout.WEST);
+        container.add(new ContainerMenu(menuItems), BorderLayout.WEST);
         container.add(new ContainerCredits(), BorderLayout.SOUTH);
-        container.add(new ContainerContentHolder(), BorderLayout.CENTER);
+        container.add(holder, BorderLayout.CENTER);
 
         //Add menu container
 

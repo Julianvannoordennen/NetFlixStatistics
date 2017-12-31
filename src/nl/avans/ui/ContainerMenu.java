@@ -1,15 +1,17 @@
 package nl.avans.ui;
 
+import nl.avans.logic.ContainerContentLoader;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class ContainerMenu extends JPanel {
 
-    public ContainerMenu() {
-        this.createComponents();
+    public ContainerMenu(ContainerMenuButton[] menuItems) {
+        this.createComponents(menuItems);
     }
 
-    private void createComponents() {
+    private void createComponents(ContainerMenuButton[] menuItems) {
 
         //Set panel layout
         this.setLayout(new FlowLayout());
@@ -26,12 +28,7 @@ public class ContainerMenu extends JPanel {
         this.add(imgLabel, BorderLayout.NORTH);
 
         //Create menu items
-        String[] menuItems = {"Menuitem 1   ▶", "Menuitem 2   ▶", "Menuitem 3   ▶"};
-        for (String item : menuItems) {
-
-            //Create panel
-            JPanel menuPanel = new ContainerMenuButton(item);
-            this.add(menuPanel);
-        }
+        for (ContainerMenuButton item : menuItems)
+            this.add(item);
     }
 }
