@@ -7,6 +7,73 @@ import java.sql.Statement;
 
 public class Database {
 
+    private Connection connection = null;
+
+    //Constructors
+    public Database() {}
+    public Database(String connectionUrl) {
+        this.connectDatabase(connectionUrl);
+    }
+
+    //Connect to the database
+    public boolean connectDatabase(String connectionUrl) {
+        try{
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            this.connection = DriverManager.getConnection(connectionUrl);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+            connection=null;
+            return false;
+        }
+        return true;
+    }
+
+    //Disconnect from the database
+    public void disconnectDatabase() {
+        if (connection != null) {
+            try {
+                connection.close();
+            }
+            catch(Exception e) {
+                System.out.println(e);
+            }
+            connection=null;
+        }
+    }
+
+    //Execute a query
+    public ResultSet executeSql(String sqlQuery) {
+        ResultSet rs = null;
+        try
+        {
+            Statement statement = this.connection.createStatement();
+            rs = statement.executeQuery(sqlQuery);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return rs;
+    }
+
+    //Execute a query without resultset
+    public boolean executeSqlNoResult(String sqlQuery) {
+        try
+        {
+            Statement statement = this.connection.createStatement();
+            return statement.execute(sqlQuery);
+        }
+        catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+
+    /*
     public ResultSet execute(String query) {
 
         // Dit zijn de instellingen voor de verbinding. Vervang de databaseName indien deze voor jou anders is.
@@ -50,5 +117,5 @@ public class Database {
         }
 
         return rs;
-    }
+    }*/
 }

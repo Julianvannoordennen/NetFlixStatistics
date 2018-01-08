@@ -4,25 +4,17 @@ import nl.avans.logic.Database;
 import nl.avans.ui.NetflixWindow;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-/*
-        Database database = new Database();
-        ResultSet rs = database.execute("SELECT * FROM TestTabel");
-        //ResultSet rs2 = database.execute("SELECT TOP 1 * FROM TestTabel");
 
-        try {
-
-            System.out.println(rs.getString("naam"));
-        } catch (Exception e) {System.out.println(e);}
-
-*/
-        //database.disconnect();
+        //Crate database connection
+        Database database = new Database(String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;encrypt=true;hostNameInCertificate=*.database.windows.net;loginTimeout=30;",
+                "netflixstatistics.database.windows.net", "NetflixStatistix", "NetflixStatistics", "Netflix$tatistics"));
 
         //Create UI
         new NetflixWindow().run();
-
     }
 }
