@@ -1,4 +1,4 @@
-package nl.avans.logic;
+package nl.avans.models;
 
 public class Account {
     private int abonneeNummer;

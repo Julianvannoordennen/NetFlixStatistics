@@ -1,17 +1,22 @@
 package nl.avans.ui;
 
 import nl.avans.logic.ContainerContentLoader;
+import nl.avans.logic.Database;
+import nl.avans.ui.overviews.ContainerAccounts;
+import nl.avans.ui.overviews.ContainerAverageWatchingTimes;
+import nl.avans.ui.overviews.ContainerProfiles;
+import nl.avans.ui.overviews.ContainerProgress;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 public class NetflixWindow implements Runnable {
 
     private JFrame frame;
+    private Database database;
     static final Color PRIMARY_COLOR = Color.BLACK;
     static final Color SECONDARY_COLOR = new Color(215,23,31);
     static final Color THIRD_COLOR = new Color(255,255,255,64);
@@ -19,6 +24,10 @@ public class NetflixWindow implements Runnable {
     static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 20);
     static final Font FONT_BIG_ENABLED = new Font("Helvetica Neue", Font.BOLD, 20);
     static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 14);
+
+    public NetflixWindow(Database database) {
+        this.database = database;
+    }
 
     @Override
     public void run() {
@@ -51,32 +60,16 @@ public class NetflixWindow implements Runnable {
         //Create menu items for menu
         ContainerContentHolder holder = new ContainerContentHolder();
         ContainerMenuButton[] menuItems = {
-            new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts())),
-            new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles())),
-            new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress()))
+            new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts(database))),
+            new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles(database))),
+            new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress(database))),
+            new ContainerMenuButton("Gemiddelde kijktijd   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAverageWatchingTimes(database)))
         };
 
         //Add containers
         container.add(new ContainerMenu(menuItems), BorderLayout.WEST);
         container.add(new ContainerCredits(), BorderLayout.SOUTH);
         container.add(holder, BorderLayout.CENTER);
-
-        //Add menu container
-
-        /*
-
-        //Value toevoegen
-        JTextField value = new JTextField("0");
-        value.setEnabled(false);
-        container.add(value);
-
-        //Input toevoegen
-        JTextField input = new JTextField();
-        container.add(input);
-
-        //Buttonpanel toevoegen
-        JPanel panel = new ButtonPanel(value, input, calculator);
-        container.add(panel);*/
     }
 
     public JFrame getFrame() {

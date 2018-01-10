@@ -1,12 +1,14 @@
 package nl.avans.logic;
 
+import nl.avans.models.Bekeken;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class BekekenRepository {
+public class WatchedRepository {
     private Database sqlConnection;
 
-    public BekekenRepository(Database sqlConnection) {
+    public WatchedRepository(Database sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
 

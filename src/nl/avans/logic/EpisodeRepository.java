@@ -1,12 +1,14 @@
 package nl.avans.logic;
 
+import nl.avans.models.Aflevering;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class AfleveringRepository {
+public class EpisodeRepository {
     private Database sqlConnection;
 
-    public AfleveringRepository(Database sqlConnection) {
+    public EpisodeRepository(Database sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
 

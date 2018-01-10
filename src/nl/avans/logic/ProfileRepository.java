@@ -1,12 +1,14 @@
 package nl.avans.logic;
 
+import nl.avans.models.Profiel;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class ProfielRepository {
+public class ProfileRepository {
     private Database sqlConnection;
 
-    public ProfielRepository(Database sqlConnection) {
+    public ProfileRepository(Database sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
 

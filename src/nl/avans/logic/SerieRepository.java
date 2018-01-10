@@ -1,5 +1,7 @@
 package nl.avans.logic;
 
+import nl.avans.models.Serie;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 

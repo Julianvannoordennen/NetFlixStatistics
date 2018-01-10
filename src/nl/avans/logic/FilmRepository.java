@@ -1,5 +1,7 @@
 package nl.avans.logic;
 
+import nl.avans.models.Film;
+
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
