@@ -1,6 +1,6 @@
 package nl.avans.logic;
 
-import nl.avans.models.Bekeken;
+import nl.avans.models.Watched;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ public class WatchedRepository {
         this.sqlConnection = sqlConnection;
     }
 
-    public ArrayList<Bekeken> readAll() {
-        ArrayList<Bekeken> lijst = new ArrayList<>();
+    public ArrayList<Watched> readAll() {
+        ArrayList<Watched> lijst = new ArrayList<>();
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM Bekeken");
             while(rs.next()) {
-                lijst.add(new Bekeken(rs.getInt("AbonneeNummer"), rs.getString("GebruikersNaam"),rs.getInt("Gezien"), rs.getInt("Percentage")));
+                lijst.add(new Watched(rs.getInt("AbonneeNummer"), rs.getString("GebruikersNaam"),rs.getInt("Gezien"), rs.getInt("Percentage")));
             }
         }
         catch(Exception e) {
@@ -26,25 +26,25 @@ public class WatchedRepository {
         return lijst;
     }
 
-    public Bekeken read(int abonneeNummer) {
-        Bekeken bekeken= null;
+    public Watched read(int subscriberNumber) {
+        Watched watched= null;
         try
         {
-            String sqlQuery = "SELECT * FROM Bekeken WHERE AbonneeNummer=" + abonneeNummer;
+            String sqlQuery = "SELECT * FROM Bekeken WHERE AbonneeNummer=" + subscriberNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            bekeken = new Bekeken(rs.getInt("AbonneeNummer"), rs.getString("GebruikersNaam"),rs.getInt("Gezien"), rs.getInt("Percentage"));
+            watched = new Watched(rs.getInt("AbonneeNummer"), rs.getString("GebruikersNaam"),rs.getInt("Gezien"), rs.getInt("Percentage"));
         }
         catch(Exception e) {
             System.out.println(e);
         }
-        return bekeken;
+        return watched;
     }
 
-    public boolean create(Bekeken bekeken) {
+    public boolean create(Watched watched) {
         try
         {
-            String sqlQuery = "INSERT INTO Bekeken VALUES (" + bekeken.getAbonneeNummer() + ", '" + bekeken.getGebruikersNaam() + "', '" + bekeken.getGezien() + ", '" + bekeken.getPercentage() + "')";
+            String sqlQuery = "INSERT INTO Bekeken VALUES (" + watched.getSubscriberNumber() + ", '" + watched.getUsername() + "', '" + watched.getWatched() + ", '" + watched.getPercentage() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -53,15 +53,15 @@ public class WatchedRepository {
         return false;
     }
 
-    public boolean delete(Bekeken bekeken) {
-        if(bekeken==null) return false;
-        return delete(bekeken.getAbonneeNummer());
+    public boolean delete(Watched watched) {
+        if(watched==null) return false;
+        return delete(watched.getSubscriberNumber());
     }
 
-    public boolean delete(int abonneeNummer) {
+    public boolean delete(int subscriberNumber) {
         try
         {
-            String sqlQuery = "DELETE Bekeken WHERE AbonneeNummer=" + abonneeNummer;
+            String sqlQuery = "DELETE Bekeken WHERE AbonneeNummer=" + subscriberNumber;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

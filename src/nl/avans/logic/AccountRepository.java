@@ -26,11 +26,11 @@ public class AccountRepository {
         return lijst;
     }
 
-    public Account read(int abonneeNummer) {
+    public Account read(int subscriberNumber) {
         Account account = null;
         try
         {
-            String sqlQuery = "SELECT * FROM Account WHERE AbonneeNummer=" + abonneeNummer;
+            String sqlQuery = "SELECT * FROM Account WHERE AbonneeNummer=" + subscriberNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             account = new Account(rs.getInt("AbonneeNummer"),rs.getString("Naam"), rs.getString("Straat"), rs.getString("Postcode"), rs.getInt("Huisnummer"), rs.getString("Plaats"));
@@ -44,7 +44,7 @@ public class AccountRepository {
     public boolean create(Account account) {
         try
         {
-            String sqlQuery = "INSERT INTO Account VALUES (" + account.getAbonneeNummer() + ", '" + account.getNaam() + "', '" + account.getStraat() + ", '" + account.getPostcode() + ", '" + account.getHuisnummer() + ", '" + account.getPlaats() + "')";
+            String sqlQuery = "INSERT INTO Account VALUES (" + account.getSubscriberNumber() + ", '" + account.getName() + "', '" + account.getStreet() + ", '" + account.getPostalCode() + ", '" + account.getHouseNumber() + ", '" + account.getCity() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -55,13 +55,13 @@ public class AccountRepository {
 
     public boolean delete(Account account) {
         if(account==null) return false;
-        return delete(account.getAbonneeNummer());
+        return delete(account.getSubscriberNumber());
     }
 
-    public boolean delete(int abonneeNummer) {
+    public boolean delete(int subscriberNumber) {
         try
         {
-            String sqlQuery = "DELETE Account WHERE AbonneeNummer=" + abonneeNummer;
+            String sqlQuery = "DELETE Account WHERE AbonneeNummer=" + subscriberNumber;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

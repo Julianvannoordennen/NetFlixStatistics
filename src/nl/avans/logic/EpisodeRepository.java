@@ -1,6 +1,6 @@
 package nl.avans.logic;
 
-import nl.avans.models.Aflevering;
+import nl.avans.models.Episode;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ public class EpisodeRepository {
         this.sqlConnection = sqlConnection;
     }
 
-    public ArrayList<Aflevering> readAll() {
-        ArrayList<Aflevering> lijst = new ArrayList<>();
+    public ArrayList<Episode> readAll() {
+        ArrayList<Episode> lijst = new ArrayList<>();
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM Aflevering");
             while(rs.next()) {
-                lijst.add(new Aflevering(rs.getInt("AfleveringId"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("TitelAflevering"), rs.getTime("Tijdsduur")));
+                lijst.add(new Episode(rs.getInt("AfleveringId"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("TitelAflevering"), rs.getTime("Tijdsduur")));
             }
         }
         catch(Exception e) {
@@ -26,25 +26,25 @@ public class EpisodeRepository {
         return lijst;
     }
 
-    public Aflevering read(int afleveringId) {
-        Aflevering aflevering = null;
+    public Episode read(int episodeId) {
+        Episode episode = null;
         try
         {
-            String sqlQuery = "SELECT * FROM Aflevering WHERE AfleveringId=" + afleveringId;
+            String sqlQuery = "SELECT * FROM Aflevering WHERE AfleveringId=" + episodeId;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            aflevering = new Aflevering(rs.getInt("AfleveringId"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("TitelAflevering"), rs.getTime("Tijdsduur"));
+            episode = new Episode(rs.getInt("AfleveringId"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("TitelAflevering"), rs.getTime("Tijdsduur"));
         }
         catch(Exception e) {
             System.out.println(e);
         }
-        return aflevering;
+        return episode;
     }
 
-    public boolean create(Aflevering aflevering) {
+    public boolean create(Episode episode) {
         try
         {
-            String sqlQuery = "INSERT INTO Aflevering VALUES (" + aflevering.getAfleveringId() + ", '" + aflevering.getSerie() + "', '" + aflevering.getSeizoen() + ", '" + aflevering.getTitelAflevering() + ", '" + aflevering.getTijdsduur() + "')";
+            String sqlQuery = "INSERT INTO Aflevering VALUES (" + episode.getEpisodeId() + ", '" + episode.getSeries() + "', '" + episode.getSeason() + ", '" + episode.getTitleEpisode() + ", '" + episode.getDuration() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -53,15 +53,15 @@ public class EpisodeRepository {
         return false;
     }
 
-    public boolean delete(Aflevering aflevering) {
-        if(aflevering==null) return false;
-        return delete(aflevering.getAfleveringId());
+    public boolean delete(Episode episode) {
+        if(episode==null) return false;
+        return delete(episode.getEpisodeId());
     }
 
-    public boolean delete(int afleveringId) {
+    public boolean delete(int episodeId) {
         try
         {
-            String sqlQuery = "DELETE Aflevering WHERE AfleveringId=" + afleveringId;
+            String sqlQuery = "DELETE Aflevering WHERE AfleveringId=" + episodeId;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

@@ -1,6 +1,6 @@
 package nl.avans.logic;
 
-import nl.avans.models.Profiel;
+import nl.avans.models.Profile;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -12,12 +12,12 @@ public class ProfileRepository {
         this.sqlConnection = sqlConnection;
     }
 
-    public ArrayList<Profiel> readAll() {
-        ArrayList<Profiel> lijst = new ArrayList<>();
+    public ArrayList<Profile> readAll() {
+        ArrayList<Profile> lijst = new ArrayList<>();
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM Profiel");
             while(rs.next()) {
-                lijst.add(new Profiel(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum")));
+                lijst.add(new Profile(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum")));
             }
         }
         catch(Exception e) {
@@ -26,25 +26,25 @@ public class ProfileRepository {
         return lijst;
     }
 
-    public Profiel read(int abonneenummer) {
-        Profiel profiel = null;
+    public Profile read(int subscriberNumber) {
+        Profile profile= null;
         try
         {
-            String sqlQuery = "SELECT * FROM Profiel WHERE Abonneenummer=" + abonneenummer;
+            String sqlQuery = "SELECT * FROM Profiel WHERE Abonneenummer=" + subscriberNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            profiel = new Profiel(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
+            profile = new Profile(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
         }
         catch(Exception e) {
             System.out.println(e);
         }
-        return profiel;
+        return profile;
     }
 
-    public boolean create(Profiel profiel) {
+    public boolean create(Profile profile) {
         try
         {
-            String sqlQuery = "INSERT INTO Profiel VALUES (" + profiel.getAbonneenummer() + ", '" + profiel.getProfielnaam() + "', '" + profiel.getGeboortedatum() + "')";
+            String sqlQuery = "INSERT INTO Profiel VALUES (" + profile.getSubscriberNumber() + ", '" + profile.getProfileName() + "', '" + profile.getBirthDate() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -53,15 +53,15 @@ public class ProfileRepository {
         return false;
     }
 
-    public boolean delete(Profiel profiel) {
-        if(profiel==null) return false;
-        return delete(profiel.getAbonneenummer());
+    public boolean delete(Profile profile) {
+        if(profile==null) return false;
+        return delete(profile.getSubscriberNumber());
     }
 
-    public boolean delete(int abonneenummer) {
+    public boolean delete(int subscriberNumber) {
         try
         {
-            String sqlQuery = "DELETE Profiel WHERE Abonneenummer=" + abonneenummer;
+            String sqlQuery = "DELETE Profiel WHERE Abonneenummer=" + subscriberNumber;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

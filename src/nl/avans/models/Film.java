@@ -4,18 +4,18 @@ import java.sql.Time;
 
 public class Film {
     private int filmId;
-    private String titel;
-    private String leeftijdsIndicatie;
-    private String taal;
-    private Time tijdsduur;
+    private String title;
+    private String ageRange;
+    private String language;
+    private Time duration;
     private String genre;
 
-    public Film(int filmId, String titel, String leeftijdsIndicatie, String taal, Time tijdsduur, String genre){
+    public Film(int filmId, String title, String ageRange, String language, Time duration, String genre){
         this.filmId = filmId;
-        this.titel = titel;
-        this.leeftijdsIndicatie = leeftijdsIndicatie;
-        this.taal = taal;
-        this.tijdsduur = tijdsduur;
+        this.title = title;
+        this.ageRange = ageRange;
+        this.language = language;
+        this.duration = duration;
         this.genre = genre;
     }
 
@@ -23,20 +23,20 @@ public class Film {
         return this.filmId;
     }
 
-    public String getTitel() {
-        return this.titel;
+    public String getTitle() {
+        return this.title;
     }
 
-    public String getLeeftijdsIndicatie() {
-        return this.leeftijdsIndicatie;
+    public String getAgeRange() {
+        return this.ageRange;
     }
 
-    public String getTaal() {
-        return this.taal;
+    public String getLanguage() {
+        return this.language;
     }
 
-    public Time getTijdsduur() {
-        return this.tijdsduur;
+    public Time getDuration() {
+        return this.duration;
     }
 
     public String getGenre() {
@@ -47,20 +47,20 @@ public class Film {
         this.filmId = filmId;
     }
 
-    public void setTitel(String titel) {
-        this.titel = titel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setLeeftijdsIndicatiee(String leeftijdsIndicatie) {
-        this.leeftijdsIndicatie = leeftijdsIndicatie;
+    public void setAgeRangee(String ageRange) {
+        this.ageRange = ageRange;
     }
 
-    public void setTaal(String taal) {
-        this.taal = taal;
+    public void setLanguage(String language) {
+        this.language = language;
     }
 
-    public void setTijdsduur(Time tijdsduur) {
-        this.tijdsduur = tijdsduur;
+    public void setDuration(Time duration) {
+        this.duration = duration;
     }
 
     public void setGenre(String genre) {
@@ -69,6 +69,6 @@ public class Film {
 
     @Override
     public String toString() {
-        return "FilmId: " + this.filmId+ ", Titel: " + this.titel + ", LeeftijdsIndicatie: " + this.leeftijdsIndicatie+ ", Taal: " + this.taal + ", Tijdsduur: " + this.tijdsduur + ", Genre: " + this.genre;
+        return "FilmId: " + this.filmId+ ", Title: " + this.title + ", AgeRange: " + this.ageRange+ ", Language: " + this.language + ", Duration: " + this.duration + ", Genre: " + this.genre;
     }
 }

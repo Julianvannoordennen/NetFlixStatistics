@@ -44,7 +44,7 @@ public class FilmRepository {
     public boolean create(Film film) {
         try
         {
-            String sqlQuery = "INSERT INTO Film VALUES (" + film.getFilmId() + ", '" + film.getTitel() + "', '" + film.getLeeftijdsIndicatie() + ", '" + film.getTaal() + ", '" + film.getTijdsduur() + ", '" + film.getGenre() + "')";
+            String sqlQuery = "INSERT INTO Film VALUES (" + film.getFilmId() + ", '" + film.getTitle() + "', '" + film.getAgeRange() + ", '" + film.getLanguage() + ", '" + film.getDuration() + ", '" + film.getGenre() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

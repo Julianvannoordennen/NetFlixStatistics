@@ -1,72 +1,72 @@
 package nl.avans.models;
 
 public class Account {
-    private int abonneeNummer;
-    private String naam;
-    private String straat;
-    private String postcode;
-    private int huisnummer;
-    private String plaats;
+    private int subscriberNumber;
+    private String name;
+    private String street;
+    private String postalCode;
+    private int houseNumber;
+    private String city;
 
-    public Account(int abonneeNummer, String naam, String straat, String postcode, int huisnummer, String plaats){
-        this.abonneeNummer = abonneeNummer;
-        this.naam = naam;
-        this.straat = straat;
-        this.postcode = postcode;
-        this.huisnummer = huisnummer;
-        this.plaats = plaats;
+    public Account(int subscriberNumber, String name, String street, String postalCode, int houseNumber, String city){
+        this.subscriberNumber = subscriberNumber;
+        this.name = name;
+        this.street = street;
+        this.postalCode = postalCode;
+        this.houseNumber = houseNumber;
+        this.city = city;
     }
 
-    public int getAbonneeNummer() {
-        return this.abonneeNummer;
+    public int getSubscriberNumber() {
+        return this.subscriberNumber;
     }
 
-    public String getNaam() {
-        return this.naam;
+    public String getName() {
+        return this.name;
     }
 
-    public String getStraat() {
-        return this.straat;
+    public String getStreet() {
+        return this.street;
     }
 
-    public String getPostcode() {
-        return this.postcode;
+    public String getPostalCode() {
+        return this.postalCode;
     }
 
-    public int getHuisnummer() {
-        return this.huisnummer;
+    public int getHouseNumber() {
+        return this.houseNumber;
     }
 
-    public String getPlaats() {
-        return this.plaats;
+    public String getCity() {
+        return this.city;
     }
 
-    public void setAbonneeNummer(int abonneeNummer) {
-        this.abonneeNummer = abonneeNummer;
+    public void setSubscriberNumber(int subscriberNumber) {
+        this.subscriberNumber = subscriberNumber;
     }
 
-    public void setNaam(String naam) {
-        this.naam = naam;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setStraat(String straat) {
-        this.straat = straat;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
     }
 
-    public void setHuisnummer(int huisnummer) {
-        this.huisnummer = huisnummer;
+    public void setHouseNumber(int houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
-    public void setPlaats(String plaats) {
-        this.plaats = plaats;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
-        return "AbonneeNummer: " + this.abonneeNummer + ", Naam: " + this.naam+ ", Straat: " + this.straat + ", Postcode: " + this.postcode + ", Huisnummer: " + this.huisnummer + ", Plaats: " + this.plaats;
+        return "SubscriberNumber: " + this.subscriberNumber + ", Name: " + this.name+ ", Street: " + this.street + ", PostalCode: " + this.postalCode + ", HouseNumber: " + this.houseNumber + ", City: " + this.city;
     }
 }
