@@ -15,7 +15,7 @@ public class TestRepositoryClass {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM TestTabel");
             while(rs.next()) {
-                lijst.add(new TestClass(rs.getInt("Studentnumber"),rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Abode"), rs.getString("Education")));
+                lijst.add(new TestClass(rs.getInt("Studentnummer"),rs.getString("Voornaam"), rs.getString("Achternaam"), rs.getString("Woonplaats"), rs.getString("Opleiding")));
             }
         }
         catch(Exception e) {
@@ -31,7 +31,7 @@ public class TestRepositoryClass {
             String sqlQuery = "SELECT * FROM TestTabel WHERE Studentnummer=" + studentnumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            student = new TestClass(rs.getInt("Studentnumber"),rs.getString("FirstName"), rs.getString("LastName"), rs.getString("Abode"), rs.getString("Education"));
+            student = new TestClass(rs.getInt("Studentnummer"),rs.getString("Voornaam"), rs.getString("Achternaam"), rs.getString("Woonplaats"), rs.getString("Opleiding"));
         }
         catch(Exception e) {
             System.out.println(e);
