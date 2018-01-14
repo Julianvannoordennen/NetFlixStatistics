@@ -30,7 +30,7 @@ public class AccountRepository {
         Account account = null;
         try
         {
-            String sqlQuery = "SELECT * FROM Account WHERE AbonneeNummer=" + subscriberNumber;
+            String sqlQuery = "SELECT * FROM Account WHERE AbonneeNummer=" + subscriberNumber + " ORDER BY AbonneeNummer";
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             account = new Account(rs.getInt("AbonneeNummer"),rs.getString("Naam"), rs.getString("Straat"), rs.getString("Postcode"), rs.getInt("Huisnummer"), rs.getString("Plaats"));
@@ -44,7 +44,7 @@ public class AccountRepository {
     public boolean create(Account account) {
         try
         {
-            String sqlQuery = "INSERT INTO Account VALUES (" + account.getSubscriberNumber() + ", '" + account.getName() + "', '" + account.getStreet() + ", '" + account.getPostalCode() + ", '" + account.getHouseNumber() + ", '" + account.getCity() + "')";
+            String sqlQuery = "INSERT INTO Account VALUES (" + account.getSubscriberNumber() + ", '" + account.getName() + "', '" + account.getStreet() + "', '" + account.getPostalCode() + "', " + account.getHouseNumber() + ", '" + account.getCity() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

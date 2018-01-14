@@ -12,6 +12,14 @@ public class NetflixSaveDelete extends JPanel {
         setDefault();
     }
 
+    public JButton getSave() {
+        return this.saveButton;
+    }
+
+    public JButton getDelete() {
+        return this.deleteButton;
+    }
+
     private void setDefault() {
 
         //Set layout

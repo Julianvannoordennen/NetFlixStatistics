@@ -1,6 +1,7 @@
 package nl.avans.logic;
 
         import nl.avans.logic.database.AccountRepository;
+        import nl.avans.logic.database.Database;
         import nl.avans.models.database.Account;
         import nl.avans.ui.controls.NetflixLabelField;
         import nl.avans.ui.controls.NetflixList;
@@ -21,9 +22,9 @@ public class AccountSelector implements ListSelectionListener {
     private NetflixLabelField houseNumber;
     private NetflixLabelField city;
     private NetflixList<String> list;
-    private ArrayList<Account> accounts;
+    private Database database;
 
-    public AccountSelector(NetflixLabelField subscriberNumber, NetflixLabelField name, NetflixLabelField street, NetflixLabelField postalCode, NetflixLabelField houseNumber, NetflixLabelField city, NetflixList<String> list, ArrayList<Account> accounts) {
+    public AccountSelector(NetflixLabelField subscriberNumber, NetflixLabelField name, NetflixLabelField street, NetflixLabelField postalCode, NetflixLabelField houseNumber, NetflixLabelField city, NetflixList<String> list, Database database) {
         this.subscriberNumber = subscriberNumber;
         this.name = name;
         this.street = street;
@@ -31,7 +32,7 @@ public class AccountSelector implements ListSelectionListener {
         this.houseNumber = houseNumber;
         this.city = city;
         this.list = list;
-        this.accounts = accounts;
+        this.database = database;
     }
 
     @Override
@@ -39,12 +40,16 @@ public class AccountSelector implements ListSelectionListener {
 
         //Get selected index
         int selectedNumber = this.list.getList().getSelectedIndex();
+        System.out.println(selectedNumber);
 
         //Get selected item, in case the user did not select '-- Nieuw account aanmaken --'
-        Account selectedAccount = new Account(-1,"","","",0,"");
-        if (selectedNumber != 0) {
+        Account selectedAccount = new Account(0,"","","",0,"");
+        if (selectedNumber > 0) {
             selectedNumber--;
-            selectedAccount = this.accounts.get(selectedNumber);
+            selectedAccount = new AccountRepository(this.database).readAll().get(selectedNumber);
+            this.subscriberNumber.getField().setEditable(false);
+        } else {
+            this.subscriberNumber.getField().setEditable(true);
         }
 
         //Add selected item to fields

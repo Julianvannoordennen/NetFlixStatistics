@@ -1,13 +1,13 @@
 package nl.avans.ui.overviews;
 
+import nl.avans.logic.database.AccountDeleter;
+import nl.avans.logic.database.AccountSaver;
 import nl.avans.logic.AccountSelector;
 import nl.avans.logic.database.AccountRepository;
 import nl.avans.logic.database.Database;
 import nl.avans.models.database.Account;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
-
-import java.util.ArrayList;
 
 public class ContainerAccounts extends ContainerContent {
 
@@ -28,8 +28,7 @@ public class ContainerAccounts extends ContainerContent {
 
         //Create 'add user' and add existing users
         listContent.getDefaultListModel().addElement("-- Nieuw account aanmaken --");
-        ArrayList<Account> accounts = new AccountRepository(this.database).readAll();
-        for (Account account : accounts)
+        for (Account account : new AccountRepository(this.database).readAll())
             listContent.getDefaultListModel().addElement(account.getSubscriberNumber() + ": " + account.getName());
 
         //Create labels and fields
@@ -51,13 +50,14 @@ public class ContainerAccounts extends ContainerContent {
         this.add(saveDelete);
 
         //Create actions
-        AccountSelector as = new AccountSelector(subscriberNumber,name,street,postalCode,houseNumber,city, listContent, accounts);
+        AccountSelector as = new AccountSelector(subscriberNumber,name,street,postalCode,houseNumber,city, listContent, this.database);
         listContent.getList().addListSelectionListener(as);
+        listContent.getList().setSelectedIndex(0);
 
-        /*
-        NetflixLabel subscriberNumberLabel = new NetflixLabel("Subscriber Number: ");
-        NetflixField subscriberNumberField = new NetflixField();
-        this.add(subscriberNumberLabel);
-        this.add(subscriberNumberField);*/
+        AccountSaver saver = new AccountSaver(subscriberNumber,name,street,postalCode,houseNumber,city,listContent,this.database);
+        saveDelete.getSave().addActionListener(saver);
+
+        AccountDeleter deleter = new AccountDeleter(subscriberNumber, listContent,this.database);
+        saveDelete.getDelete().addActionListener(deleter);
     }
 }
