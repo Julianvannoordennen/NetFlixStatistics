@@ -40,7 +40,6 @@ public class AccountSelector implements ListSelectionListener {
 
         //Get selected index
         int selectedNumber = this.list.getList().getSelectedIndex();
-        System.out.println(selectedNumber);
 
         //Get selected item, in case the user did not select '-- Nieuw account aanmaken --'
         Account selectedAccount = new Account(0,"","","",0,"");

@@ -28,7 +28,7 @@ public class AccountDeleter implements ActionListener {
         //Create Account repository
         AccountRepository accountRepository = new AccountRepository(this.database);
 
-        //Delete current but keep fields
+        //Delete current
         accountRepository.delete(Integer.parseInt(this.subscriberNumber.getField().getText()));
 
         //Update list
