@@ -1,4 +1,4 @@
-package nl.avans.logic;
+package nl.avans.logic.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package nl.avans.models;
+package nl.avans.models.database;
 
 import java.sql.Time;
 

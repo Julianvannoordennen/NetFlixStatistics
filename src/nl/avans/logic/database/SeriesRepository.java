@@ -1,6 +1,6 @@
-package nl.avans.logic;
+package nl.avans.logic.database;
 
-import nl.avans.models.Series;
+import nl.avans.models.database.Series;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

@@ -1,9 +1,9 @@
-package nl.avans.ui;
+package nl.avans.ui.controls;
 
 import javax.swing.*;
 import java.awt.*;
 
-class ImagePanel extends JComponent {
+public class ImagePanel extends JComponent {
 
     private Image image;
 

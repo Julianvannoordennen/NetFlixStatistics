@@ -1,7 +1,8 @@
 package nl.avans.ui;
 
 import nl.avans.logic.ContainerContentLoader;
-import nl.avans.logic.Database;
+import nl.avans.logic.database.Database;
+import nl.avans.ui.controls.ImagePanel;
 import nl.avans.ui.overviews.ContainerAccounts;
 import nl.avans.ui.overviews.ContainerAverageWatchingTimes;
 import nl.avans.ui.overviews.ContainerProfiles;

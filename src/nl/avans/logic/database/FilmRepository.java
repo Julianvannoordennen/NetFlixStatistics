@@ -1,6 +1,6 @@
-package nl.avans.logic;
+package nl.avans.logic.database;
 
-import nl.avans.models.Film;
+import nl.avans.models.database.Film;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;

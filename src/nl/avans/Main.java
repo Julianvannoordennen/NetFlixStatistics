@@ -1,7 +1,6 @@
 package nl.avans;
 
-import nl.avans.logic.*;
-import nl.avans.models.*;
+import nl.avans.logic.database.Database;
 import nl.avans.ui.NetflixWindow;
 
 public class Main {

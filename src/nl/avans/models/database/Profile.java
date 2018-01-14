@@ -1,4 +1,4 @@
-package nl.avans.models;
+package nl.avans.models.database;
 
 public class Profile {
     private int subscriberNumber;
