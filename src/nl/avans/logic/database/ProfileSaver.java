@@ -47,8 +47,6 @@ public class ProfileSaver implements ActionListener {
             System.out.println("The input values are incorrect.");
         }
 
-        return;
-
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {
 
