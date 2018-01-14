@@ -53,6 +53,7 @@ public class AccountSaver implements ActionListener {
                 || !this.name.getField().getText().matches("[a-zA-Z\\.]{3,50}")
                 || !this.street.getField().getText().matches("[a-zA-Z]{3,50}")
                 || !this.postalCode.getField().getText().matches("[1-9][0-9]{3}[A-Z]{2}")
+                || !this.houseNumber.getField().getText().matches("[0-9]")
                 || !this.city.getField().getText().matches("[a-zA-Z]{1,60}")) {
             System.out.println("The input values are incorrect.");
         }
