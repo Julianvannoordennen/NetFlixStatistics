@@ -26,11 +26,11 @@ public class FilmRepository {
         return lijst;
     }
 
-    public Film read(int filmId) {
+    public Film readLongestTimeYoungerThan16() {
         Film film= null;
         try
         {
-            String sqlQuery = "SELECT * FROM Film WHERE FilmId=" + filmId;
+            String sqlQuery = "SELECT TOP 1 * FROM Film WHERE Film.LeeftijdsIndicatie LIKE ('12%') OR Film.LeeftijdsIndicatie LIKE ('6%') ORDER BY Film.Tijdsduur DESC";
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             film = new Film(rs.getInt("FilmId"),rs.getString("Titel"), rs.getString("LeeftijdsIndicatie"), rs.getString("Taal"), rs.getTime("Tijdsduur"), rs.getString("Genre"));

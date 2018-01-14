@@ -3,10 +3,7 @@ package nl.avans.ui;
 import nl.avans.logic.ContainerContentLoader;
 import nl.avans.logic.database.Database;
 import nl.avans.ui.controls.ImagePanel;
-import nl.avans.ui.overviews.ContainerAccounts;
-import nl.avans.ui.overviews.ContainerAverageWatchingTimes;
-import nl.avans.ui.overviews.ContainerProfiles;
-import nl.avans.ui.overviews.ContainerProgress;
+import nl.avans.ui.overviews.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -64,7 +61,8 @@ public class NetflixWindow implements Runnable {
             new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts(database))),
             new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles(database))),
             new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress(database))),
-            new ContainerMenuButton("Gemiddelde kijktijd   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAverageWatchingTimes(database)))
+            new ContainerMenuButton("Gemiddelde kijktijd   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAverageWatchingTimes(database))),
+            new ContainerMenuButton("16- Langst   ▶", new ContainerContentLoader(this.frame, holder, new ContainerLongestTimeYoungerThan16(database)))
         };
 
         //Add containers

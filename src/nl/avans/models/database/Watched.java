@@ -2,13 +2,13 @@ package nl.avans.models.database;
 
 public class Watched {
     private int subscriberNumber;
-    private String username;
+    private int profileNumber;
     private int watched;
     private int percentage;
 
-    public Watched(int subscriberNumber, String username, int watched, int percentage){
+    public Watched(int subscriberNumber, int profileNumber, int watched, int percentage){
         this.subscriberNumber = subscriberNumber;
-        this.username = username;
+        this.profileNumber = profileNumber;
         this.watched = watched;
         this.percentage = percentage;
     }
@@ -17,8 +17,8 @@ public class Watched {
         return this.subscriberNumber;
     }
 
-    public String getUsername() {
-        return this.username;
+    public int getProfileNumber() {
+        return this.profileNumber;
     }
 
     public int getWatched() {
@@ -33,8 +33,8 @@ public class Watched {
         this.subscriberNumber = subscriberNumber;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(int profileNumber) {
+        this.profileNumber = profileNumber;
     }
 
     public void setWatched(int watched) {
@@ -47,6 +47,6 @@ public class Watched {
 
     @Override
     public String toString() {
-        return "SubscriberNumber: " + this.subscriberNumber + ", Username: " + this.username + ", Watched: " + this.watched + ", Percentage: " + this.percentage;
+        return "SubscriberNumber: " + this.subscriberNumber + ", Username: " + this.profileNumber + ", Watched: " + this.watched + ", Percentage: " + this.percentage;
     }
 }

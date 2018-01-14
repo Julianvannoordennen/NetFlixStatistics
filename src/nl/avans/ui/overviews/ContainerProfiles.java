@@ -36,7 +36,7 @@ public class ContainerProfiles extends ContainerContent {
 
         //Create labels and fields
         NetflixLabelField profileNumber = new NetflixLabelField("Profielnummer:   ", this);
-        NetflixLabelField subscriberNumber = new NetflixLabelField("Abboneenummer:   ", this);
+        NetflixLabelField subscriberNumber = new NetflixLabelField("Subscriptienummer:   ", this);
         NetflixLabelField profileName = new NetflixLabelField("Profielnaam:   ", this);
         NetflixLabelField birthDate = new NetflixLabelField("Geboortedatum:   ", this);
         this.add(profileNumber);
