@@ -49,12 +49,6 @@ public class AccountSaver implements ActionListener {
                 this.city.getField().getText()
         );
 
-
-        /*
-
-
-        VOER HIER CONTROLE IN !!!!!!!!!!!!!
-        */
         if (!this.subscriberNumber.getField().getText().matches("[0-9]{7}")
                 || !this.name.getField().getText().matches("[a-zA-Z\\.]{3,50}")
                 || !this.street.getField().getText().matches("[a-zA-Z]{3,50}")
@@ -63,9 +57,8 @@ public class AccountSaver implements ActionListener {
             System.out.println("The input values are incorrect.");
         }
 
-
-
         return;
+
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {
 

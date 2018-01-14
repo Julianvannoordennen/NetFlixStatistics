@@ -40,13 +40,14 @@ public class ProfileSaver implements ActionListener {
                 this.birthDate.getField().getText()
         );
 
-        /*
+        if (!this.profileNumber.getField().getText().matches("[0-9]")
+                || !this.subscriberNumber.getField().getText().matches("[0-9]{7}")
+                || !this.profileName.getField().getText().matches("[a-zA-Z]{1,50}")
+                || !this.birthDate.getField().getText().matches("([0-2][0-9])|(30|31)-(0[0-9])|(10|11|12)-[0-9]{4}")) {
+            System.out.println("The input values are incorrect.");
+        }
 
-
-        VOER HIER CONTROLE IN !!!!!!!!!!!!!
-
-
-         */
+        return;
 
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {
