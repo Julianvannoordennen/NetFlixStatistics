@@ -18,11 +18,11 @@ public class ContainerAccounts extends ContainerContent {
 
     private void createComponents() {
 
-        //Create serie selector label
+        //Create account selector label
         NetflixLabel accountLabel = new NetflixLabel("Kies één account");
         this.add(accountLabel);
 
-        //Create serie selector
+        //Create account selector
         NetflixList<String> listContent = new NetflixList<String>();
         this.add(listContent);
 
@@ -32,12 +32,12 @@ public class ContainerAccounts extends ContainerContent {
             listContent.getDefaultListModel().addElement(account.getSubscriberNumber() + ": " + account.getName());
 
         //Create labels and fields
-        NetflixLabelField subscriberNumber = new NetflixLabelField("Subscriber Number:   ", this);
-        NetflixLabelField name = new NetflixLabelField("Name:   ", this);
-        NetflixLabelField street = new NetflixLabelField("Street:   ", this);
-        NetflixLabelField postalCode = new NetflixLabelField("Postalcode:   ", this);
-        NetflixLabelField houseNumber = new NetflixLabelField("House Number:   ", this);
-        NetflixLabelField city = new NetflixLabelField("City:   ", this);
+        NetflixLabelField subscriberNumber = new NetflixLabelField("Subscriptienummer:   ", this);
+        NetflixLabelField name = new NetflixLabelField("Naam:   ", this);
+        NetflixLabelField street = new NetflixLabelField("Straat:   ", this);
+        NetflixLabelField postalCode = new NetflixLabelField("Postcode:   ", this);
+        NetflixLabelField houseNumber = new NetflixLabelField("Huisnummer:   ", this);
+        NetflixLabelField city = new NetflixLabelField("Stad:   ", this);
         this.add(subscriberNumber);
         this.add(name);
         this.add(street);
@@ -50,8 +50,8 @@ public class ContainerAccounts extends ContainerContent {
         this.add(saveDelete);
 
         //Create actions
-        AccountSelector as = new AccountSelector(subscriberNumber,name,street,postalCode,houseNumber,city, listContent, this.database);
-        listContent.getList().addListSelectionListener(as);
+        AccountSelector accountSelector = new AccountSelector(subscriberNumber,name,street,postalCode,houseNumber,city, listContent, this.database);
+        listContent.getList().addListSelectionListener(accountSelector);
         listContent.getList().setSelectedIndex(0);
 
         AccountSaver saver = new AccountSaver(subscriberNumber,name,street,postalCode,houseNumber,city,listContent,this.database);

@@ -17,7 +17,7 @@ public class ProfileRepository {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM Profiel");
             while(rs.next()) {
-                lijst.add(new Profile(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum")));
+                lijst.add(new Profile(rs.getInt("Profielnummer"),rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum")));
             }
         }
         catch(Exception e) {
@@ -33,7 +33,7 @@ public class ProfileRepository {
             String sqlQuery = "SELECT * FROM Profiel WHERE Abonneenummer=" + subscriberNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            profile = new Profile(rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
+            profile = new Profile(rs.getInt("Profielnummer"),rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
         }
         catch(Exception e) {
             System.out.println(e);
@@ -44,7 +44,7 @@ public class ProfileRepository {
     public boolean create(Profile profile) {
         try
         {
-            String sqlQuery = "INSERT INTO Profiel VALUES (" + profile.getSubscriberNumber() + ", '" + profile.getProfileName() + "', '" + profile.getBirthDate() + "')";
+            String sqlQuery = "INSERT INTO Profiel VALUES (" + profile.getProfileNumber() + ", " + profile.getSubscriberNumber() + ", '" + profile.getProfileName() + "', '" + profile.getBirthDate() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -55,13 +55,13 @@ public class ProfileRepository {
 
     public boolean delete(Profile profile) {
         if(profile==null) return false;
-        return delete(profile.getSubscriberNumber());
+        return delete(profile.getProfileNumber());
     }
 
-    public boolean delete(int subscriberNumber) {
+    public boolean delete(int profileNumber) {
         try
         {
-            String sqlQuery = "DELETE Profiel WHERE Abonneenummer=" + subscriberNumber;
+            String sqlQuery = "DELETE Profiel WHERE Profielnummer=" + profileNumber;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
