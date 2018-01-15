@@ -13,6 +13,7 @@ package nl.avans.logic;
         import java.awt.event.ActionListener;
         import java.util.ArrayList;
 
+// With this class you can select an account and make sure changes are made correctly
 public class AccountSelector implements ListSelectionListener {
 
     private NetflixLabelField subscriberNumber;
