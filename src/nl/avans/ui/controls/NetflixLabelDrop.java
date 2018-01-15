@@ -1,5 +1,7 @@
 package nl.avans.ui.controls;
 
+import nl.avans.ui.NetflixWindow;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
@@ -50,6 +52,9 @@ public class NetflixLabelDrop<E> extends JPanel {
         this.setPreferredSize(new Dimension(9999,50));
         this.label.setMaximumSize(new Dimension(250,10));
         this.label.setPreferredSize(new Dimension(250,10));
+        this.setBackground(NetflixWindow.TRANSPARENT);
+        this.label.setForeground(NetflixWindow.PRIMARY_COLOR);
+        this.label.setFont(NetflixWindow.FONT_SMALL_BOLD);
 
         //Add all
         this.add(this.label);

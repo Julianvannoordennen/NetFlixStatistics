@@ -1,6 +1,9 @@
 package nl.avans.ui.controls;
 
+import nl.avans.ui.NetflixWindow;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class NetflixLabel extends JLabel {
 
@@ -11,6 +14,9 @@ public class NetflixLabel extends JLabel {
 
     private void setDefault() {
 
-        //Change design here
+        //Change design from label
+        this.setAlignmentX(Component.CENTER_ALIGNMENT);
+        this.setFont(NetflixWindow.FONT_SMALL_BOLD);
+        this.setForeground(NetflixWindow.PRIMARY_COLOR);
     }
 }

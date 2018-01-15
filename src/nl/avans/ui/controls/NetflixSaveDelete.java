@@ -1,6 +1,9 @@
 package nl.avans.ui.controls;
 
+import nl.avans.ui.NetflixWindow;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class NetflixSaveDelete extends JPanel {
 
@@ -23,12 +26,15 @@ public class NetflixSaveDelete extends JPanel {
     private void setDefault() {
 
         //Set layout
-        this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+        //this.setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+        this.setLayout(new BorderLayout());
 
         //Create 2 buttons
         this.saveButton = new JButton("Save");
         this.deleteButton = new JButton("Delete");
-        this.add(this.saveButton);
-        this.add(this.deleteButton);
+        this.add(this.saveButton, BorderLayout.WEST);
+        this.add(this.deleteButton, BorderLayout.EAST);
+        this.setMaximumSize(new Dimension(9999,100));
+        this.setBackground(NetflixWindow.TRANSPARENT);
     }
 }

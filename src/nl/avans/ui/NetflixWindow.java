@@ -20,7 +20,9 @@ public class NetflixWindow implements Runnable {
     public static final Color SECONDARY_COLOR = new Color(215,23,31);
     public static final Color THIRD_COLOR = new Color(255,255,255,64);
     public static final Color FOURTH_COLOR = Color.WHITE;
+    public static final Color TRANSPARENT = new Color(0,0,0,0);
     public static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 16);
+    public static final Font FONT_SMALL_BOLD = new Font("Helvetica Neue", Font.BOLD, 12);
     public static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 12);
 
     public NetflixWindow(Database database) {

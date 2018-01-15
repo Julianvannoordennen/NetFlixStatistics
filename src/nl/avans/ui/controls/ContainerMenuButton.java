@@ -31,7 +31,7 @@ public class ContainerMenuButton extends JLabel implements MouseListener  {
         this.addMouseListener(event);
         this.setForeground(NetflixWindow.FOURTH_COLOR);
         this.setFont(NetflixWindow.FONT_BIG);
-        this.setPreferredSize(new Dimension(150,50));
+        this.setPreferredSize(new Dimension(150,25));
     }
 
     @Override

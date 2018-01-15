@@ -21,7 +21,7 @@ public abstract class ContainerContent extends JPanel {
         //Set layout
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        this.setBackground(NetflixWindow.THIRD_COLOR);
+        this.setBackground(NetflixWindow.TRANSPARENT);
 
         //Add title
         JLabel title = new JLabel(this.titleString);
