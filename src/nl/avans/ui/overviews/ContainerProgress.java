@@ -34,7 +34,11 @@ public class ContainerProgress extends ContainerContent {
         //Create 'add user' and add existing users
         listContent.getDefaultListModel().addElement("-- Nieuwe progressie aanmaken --");
         for (Watched watched : new WatchedRepository(this.database).readAll()) {
-            listContent.getDefaultListModel().addElement(watched.getSubscriberNumber() + ": ," + watched.getProfileNumber() + ": ," + watched.getWatched() + ": ," + watched.getPercentage());
+            Profile profile = new ProfileRepository(this.database).read(watched.getProfileNumber());
+            Episode episode = new EpisodeRepository(this.database).read(watched.getWatched());
+            Film film = new FilmRepository(this.database).read(watched.getWatched());
+            String title = episode == null ? film.getTitle() : episode.getTitleEpisode();
+            listContent.getDefaultListModel().addElement(watched.getProfileNumber() + ": " + profile.getProfileName() + " ," + watched.getWatched() + ": " + title + " (" + watched.getPercentage() + "%)");
         }
 
         //Create labels and fields

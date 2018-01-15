@@ -60,7 +60,8 @@ public class AccountRepository {
         try
         {
             String sqlQuery = "INSERT INTO Account VALUES (" + account.getSubscriberNumber() + ", '" + account.getName() + "', '" + account.getStreet() + "', '" + account.getPostalCode() + "', " + account.getHouseNumber() + ", '" + account.getCity() + "')";
-            return sqlConnection.executeSqlNoResult(sqlQuery);
+            Boolean result = sqlConnection.executeSqlNoResult(sqlQuery);
+            return result;
         }
         catch(Exception e) {
             System.out.println(e);

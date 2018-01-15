@@ -63,7 +63,8 @@ public class Database {
         try
         {
             Statement statement = this.connection.createStatement();
-            return statement.execute(sqlQuery);
+            statement.execute(sqlQuery);
+            return true;
         }
         catch(Exception e)
         {

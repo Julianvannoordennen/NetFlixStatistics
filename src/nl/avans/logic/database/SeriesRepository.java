@@ -18,7 +18,7 @@ public class SeriesRepository {
         try {
             ResultSet rs = sqlConnection.executeSql("SELECT * FROM Serie");
             while(rs.next()) {
-                lijst.add(new Series(rs.getString("Serie"),rs.getString("Seizoen"), rs.getString("Leeftijd"), rs.getString("Taal"), rs.getString("Genre"), rs.getString("LijktOP")));
+                lijst.add(new Series(rs.getString("Serie"), rs.getString("Leeftijd"), rs.getString("Taal"), rs.getString("Genre"), rs.getString("LijktOP")));
             }
         }
         catch(Exception e) {
@@ -34,7 +34,7 @@ public class SeriesRepository {
             String sqlQuery = "SELECT * FROM Serie WHERE Serie=" + season;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
-            series = new Series(rs.getString("Serie"),rs.getString("Seizoen"), rs.getString("Leeftijd"), rs.getString("Taal"), rs.getString("Genre"), rs.getString("LijktOP"));
+            series = new Series(rs.getString("Serie"), rs.getString("Leeftijd"), rs.getString("Taal"), rs.getString("Genre"), rs.getString("LijktOP"));
         }
         catch(Exception e) {
             System.out.println(e);
@@ -45,7 +45,7 @@ public class SeriesRepository {
     public boolean create(Series series) {
         try
         {
-            String sqlQuery = "INSERT INTO Serie VALUES (" + series.getSeries() + ", '" + series.getSeason() + "', '" + series.getAge() + ", '" + series.getLanguage() + ", '" + series.getGenre() + ", '" + series.getResembles() + "')";
+            String sqlQuery = "INSERT INTO Serie VALUES (" + series.getSeries() + ", '" + series.getAge() + ", '" + series.getLanguage() + ", '" + series.getGenre() + ", '" + series.getResembles() + "')";
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

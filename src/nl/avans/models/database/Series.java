@@ -3,15 +3,13 @@ package nl.avans.models.database;
 //Contains every type of information added to series
 public class Series {
     private String series;
-    private String season;
     private String age;
     private String language;
     private String genre;
     private String resembles;
 
-    public Series(String series, String season, String age, String language, String genre, String resembles){
+    public Series(String series, String age, String language, String genre, String resembles){
         this.series = series;
-        this.season = season;
         this.age = age;
         this.language = language;
         this.genre = genre;
@@ -20,10 +18,6 @@ public class Series {
     //Returns all information entered about series
     public String getSeries() {
         return this.series;
-    }
-
-    public String getSeason() {
-        return this.season;
     }
 
     public String getAge() {
@@ -42,12 +36,9 @@ public class Series {
         return this.resembles;
     }
 
+    //For setting the information
     public void setSeries(String series) {
         this.series = series;
-    }
-    //For setting the information
-    public void setSeason(String season) {
-        this.season = season;
     }
 
     public void setAge(String age) {
@@ -68,6 +59,6 @@ public class Series {
 
     @Override
     public String toString() {
-        return "Series: " + this.series + ", Season: " + this.season + ", Age " + this.age + ", Language: " + this.language + ", Genre: " + this.genre + ", Resembles: " + this.resembles;
+        return "Series: " + this.series + ", Age " + this.age + ", Language: " + this.language + ", Genre: " + this.genre + ", Resembles: " + this.resembles;
     }
 }

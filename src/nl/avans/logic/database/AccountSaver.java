@@ -46,7 +46,13 @@ public class AccountSaver implements ActionListener {
         if (this.name.getField().getText().length() < 2 || this.name.getField().getText().length() > 50) error += "- Naam moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
         if (this.street.getField().getText().length() < 2 || this.street.getField().getText().length() > 50) error += "- Straat moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
         if (!this.postalCode.getField().getText().matches("[1-9][0-9]{3}[A-Z]{2}")) error += "- Postcode moet uit het volgende formaat bestaan: '1000AA'\n";
-        if (!this.houseNumber.getField().getText().matches("[1-9][0-9]{1,3}")) error += "- Het huisnummer moet hoger dan nul en lager dan 10.000 zijn\n";
+        try {
+            Integer houseNumber = Integer.parseInt(this.houseNumber.getField().getText());
+            if (houseNumber <= 0 || houseNumber >= 10000)
+                error += "- Het huisnummer moet hoger dan nul en lager dan 10.000 zijn\n";
+        } catch(Exception ex) {
+            error += "- Het huisnummer moet hoger dan nul en lager dan 10.000 zijn\n";
+        }
         if (this.city.getField().getText().length() < 2 || this.city.getField().getText().length() > 50) error += "- Stad moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
         if (!error.equals("")) {
             JOptionPane.showMessageDialog(frame, error,"Foute invoer", JOptionPane.ERROR_MESSAGE);
@@ -78,7 +84,11 @@ public class AccountSaver implements ActionListener {
             this.city.getField().setText("");
 
             //Save
-            accountRepository.create(account);
+            Boolean result = accountRepository.create(account);
+            System.out.println(result);
+            if (!result) {
+                JOptionPane.showMessageDialog(frame, "- Ingevoerde subscriptienummer bestaat al\n","Foute invoer", JOptionPane.ERROR_MESSAGE);
+            }
 
         } else {
 

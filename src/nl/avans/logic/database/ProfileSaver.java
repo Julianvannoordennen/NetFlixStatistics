@@ -65,7 +65,9 @@ public class ProfileSaver implements ActionListener {
             this.birthDate.getField().setText("");
 
             //Save
-            profileRepository.create(profile);
+            if (!profileRepository.create(profile)) {
+                JOptionPane.showMessageDialog(frame, "- Ingevoerde profielnummer bestaat al\n","Foute invoer", JOptionPane.ERROR_MESSAGE);
+            }
 
         } else {
 

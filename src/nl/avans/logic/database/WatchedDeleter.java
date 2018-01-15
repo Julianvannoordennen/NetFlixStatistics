@@ -1,5 +1,8 @@
 package nl.avans.logic.database;
 
+import nl.avans.models.database.Episode;
+import nl.avans.models.database.Film;
+import nl.avans.models.database.Profile;
 import nl.avans.models.database.Watched;
 import nl.avans.ui.controls.NetflixLabelDrop;
 import nl.avans.ui.controls.NetflixLabelField;
@@ -39,8 +42,13 @@ public class WatchedDeleter implements ActionListener {
         DefaultListModel<String> dlm = this.list.getDefaultListModel();
         dlm.clear();
         dlm.addElement("-- Nieuwe progressie aanmaken --");
-        for (Watched updatedWatched : watchedRepository.readAll())
-            dlm.addElement(updatedWatched.getSubscriberNumber() + ": ," + updatedWatched.getProfileNumber() + ": ," + updatedWatched.getWatched() + ": ," + updatedWatched.getPercentage());
+        for (Watched newWatched : new WatchedRepository(this.database).readAll()) {
+            Profile profile = new ProfileRepository(this.database).read(newWatched.getProfileNumber());
+            Episode episode = new EpisodeRepository(this.database).read(newWatched.getWatched());
+            Film film = new FilmRepository(this.database).read(newWatched.getWatched());
+            String title = episode == null ? film.getTitle() : episode.getTitleEpisode();
+            this.list.getDefaultListModel().addElement(newWatched.getProfileNumber() + ": " + profile.getProfileName() + " ," + newWatched.getWatched() + ": " + title + " (" + newWatched.getPercentage() + "%)");
+        }
         this.list.getList().setSelectedIndex(0);
     }
 }

@@ -75,7 +75,8 @@ public class ProfileRepository {
         try
         {
             String sqlQuery = "INSERT INTO Profiel VALUES (" + profile.getProfileNumber() + ", " + profile.getSubscriberNumber() + ", '" + profile.getProfileName() + "', '" + profile.getBirthDate() + "')";
-            return sqlConnection.executeSqlNoResult(sqlQuery);
+            Boolean result = sqlConnection.executeSqlNoResult(sqlQuery);
+            return result;
         }
         catch(Exception e) {
             System.out.println(e);
