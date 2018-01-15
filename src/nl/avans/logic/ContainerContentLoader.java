@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+// Meant to show what happens when you do something with your mouse
+
 public class ContainerContentLoader implements MouseListener {
 
     private ContainerContentHolder targetContainer;
