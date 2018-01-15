@@ -2,6 +2,7 @@ package nl.avans.models.database;
 
 import java.sql.Time;
 
+// shows what information is showed for an episode
 public class Episode {
     private int episodeId;
     private String series;
@@ -16,7 +17,7 @@ public class Episode {
         this.titleEpisode = titleEpisode;
         this.duration = duration;
     }
-
+// returns the entered information about an episode
     public int getEpisodeId() {
         return this.episodeId;
     }
@@ -36,7 +37,7 @@ public class Episode {
     public Time getDuration() {
         return this.duration;
     }
-
+// to set all information about an episode
     public void setEpisodeId(int episodeId) {
         this.episodeId = episodeId;
     }
