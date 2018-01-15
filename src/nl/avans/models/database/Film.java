@@ -2,6 +2,7 @@ package nl.avans.models.database;
 
 import java.sql.Time;
 
+// shows all information about a film
 public class Film {
     private int filmId;
     private String title;
@@ -19,6 +20,7 @@ public class Film {
         this.genre = genre;
     }
 
+    // return the information about a film
     public int getFilmId() {
         return this.filmId;
     }
@@ -42,7 +44,7 @@ public class Film {
     public String getGenre() {
         return  this.genre;
     }
-
+// sets every bit of information
     public void setFilmId(int filmId) {
         this.filmId = filmId;
     }

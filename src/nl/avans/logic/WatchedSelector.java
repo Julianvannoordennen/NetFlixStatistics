@@ -9,6 +9,7 @@ import nl.avans.ui.controls.NetflixList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+// Shows which things have been watched by a specific profile
 public class WatchedSelector implements ListSelectionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;

@@ -12,6 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 
+// Check how much people watched a specific show on average.
+
 public class AverageWatchingTimesViewer implements ActionListener {
 
     private NetflixComboBox<String> accountSelector;

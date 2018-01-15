@@ -12,6 +12,7 @@ import nl.avans.ui.controls.NetflixList;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+// Meant to select or make changes to a profile.
 public class ProfileSelector implements ListSelectionListener {
 
     private NetflixLabelField profileNumber;
