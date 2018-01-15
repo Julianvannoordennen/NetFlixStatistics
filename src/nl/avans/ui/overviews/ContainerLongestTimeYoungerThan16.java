@@ -17,7 +17,8 @@ public class ContainerLongestTimeYoungerThan16 extends ContainerContent {
         this.createComponents();
     }
 
-    private void createComponents() {
+    @Override
+    protected void createComponents() {
 
         //Create labels and fields
         NetflixLabelField filmId = new NetflixLabelField("FilmId:   ", this);

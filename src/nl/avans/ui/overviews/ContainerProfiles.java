@@ -14,7 +14,8 @@ public class ContainerProfiles extends ContainerContent {
         this.createComponents();
     }
 
-    private void createComponents() {
+    @Override
+    protected void createComponents() {
 
         //Create profile selector label
         NetflixLabel profileLabel = new NetflixLabel("Kies één profiel");

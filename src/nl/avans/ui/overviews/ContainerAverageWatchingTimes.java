@@ -26,7 +26,8 @@ public class ContainerAverageWatchingTimes extends ContainerContent {
         this.createComponents();
     }
 
-    private void createComponents() {
+    @Override
+    protected void createComponents() {
 
         //Create serie selector label
         NetflixLabel accountLabel = new NetflixLabel("Kies één account");

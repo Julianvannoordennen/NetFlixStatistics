@@ -14,7 +14,8 @@ public class ContainerProgress extends ContainerContent {
         this.createComponents();
     }
 
-    private void createComponents() {
+    @Override
+    protected void createComponents() {
 
         //Create watched selector label
         NetflixLabel watchedLabel = new NetflixLabel("Kies één progressie");

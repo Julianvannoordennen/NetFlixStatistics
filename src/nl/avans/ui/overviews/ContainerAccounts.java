@@ -16,7 +16,8 @@ public class ContainerAccounts extends ContainerContent {
         this.createComponents();
     }
 
-    private void createComponents() {
+    @Override
+    protected void createComponents() {
 
         //Create account selector label
         NetflixLabel accountLabel = new NetflixLabel("Kies één account");

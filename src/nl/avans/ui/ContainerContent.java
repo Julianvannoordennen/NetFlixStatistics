@@ -13,10 +13,10 @@ public abstract class ContainerContent extends JPanel {
     public ContainerContent(String titleString, Database database) {
         this.titleString = titleString;
         this.database = database;
-        this.createComponents();
+        this.createDefaultComponents();
     }
 
-    private void createComponents() {
+    private void createDefaultComponents() {
 
         //Set layout
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
@@ -33,6 +33,9 @@ public abstract class ContainerContent extends JPanel {
 
     public void refresh() {
         this.removeAll();
+        createDefaultComponents();
         createComponents();
     }
+
+    protected abstract void createComponents();
 }
