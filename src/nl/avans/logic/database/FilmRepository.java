@@ -5,6 +5,7 @@ import nl.avans.models.database.Film;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// to create, update or delete film
 public class FilmRepository {
     private Database sqlConnection;
 
@@ -12,6 +13,7 @@ public class FilmRepository {
         this.sqlConnection = sqlConnection;
     }
 
+    // list of all films
     public ArrayList<Film> readAll() {
         ArrayList<Film> lijst = new ArrayList<>();
         try {
@@ -25,7 +27,7 @@ public class FilmRepository {
         }
         return lijst;
     }
-
+    //Check what films have been watched by a specific subscriber
     public ArrayList<Film> readByAccount(int subscriberNumber) {
         ArrayList<Film> lijst = new ArrayList<>();
         try {
@@ -55,7 +57,7 @@ public class FilmRepository {
         }
         return film;
     }
-
+    // longest film for people under 16
     public Film readLongestTimeYoungerThan16() {
         Film film= null;
         try
@@ -70,7 +72,7 @@ public class FilmRepository {
         }
         return film;
     }
-
+    //create a film
     public boolean create(Film film) {
         try
         {
@@ -82,7 +84,7 @@ public class FilmRepository {
         }
         return false;
     }
-
+    // delete a film
     public boolean delete(Film film) {
         if(film==null) return false;
         return delete(film.getFilmId());

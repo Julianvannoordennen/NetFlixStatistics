@@ -5,9 +5,11 @@ import nl.avans.models.database.Profile;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//To take data out of a profiles and use it to connect to other data
 public class ProfileRepository {
     private Database sqlConnection;
 
+    // a list of profiles
     public ProfileRepository(Database sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
@@ -25,7 +27,7 @@ public class ProfileRepository {
         }
         return lijst;
     }
-
+    //A list of films that have been fully watched by a subscriber
     public ArrayList<Profile> readFullyWatchedByFilm(int filmId) {
         ArrayList<Profile> lijst = new ArrayList<>();
         try {
@@ -39,7 +41,7 @@ public class ProfileRepository {
         }
         return lijst;
     }
-
+    //information about a specific subscriber
     public ArrayList<Profile> readAllBySubscriberNumber(int subscriberNumber) {
         ArrayList<Profile> lijst = new ArrayList<>();
         try {
@@ -68,7 +70,7 @@ public class ProfileRepository {
         }
         return profile;
     }
-
+    // used to create a new profile
     public boolean create(Profile profile) {
         try
         {
@@ -80,7 +82,7 @@ public class ProfileRepository {
         }
         return false;
     }
-
+    // used to change a profile
     public boolean update(Profile profile) {
         try
         {
@@ -92,7 +94,7 @@ public class ProfileRepository {
         }
         return false;
     }
-
+    // for deleting a profile
     public boolean delete(Profile profile) {
         if(profile==null) return false;
         return delete(profile.getProfileNumber());
