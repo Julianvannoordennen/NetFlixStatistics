@@ -74,6 +74,5 @@ public class ContainerProgress extends ContainerContent {
         ProgressAccountSelector progressAccountSelector = new ProgressAccountSelector(subscriberNumber,profileNumber,this.database);
         subscriberNumber.getDropDown().addActionListener(progressAccountSelector);
         subscriberNumber.getDropDown().setSelectedIndex(0);
-
     }
 }

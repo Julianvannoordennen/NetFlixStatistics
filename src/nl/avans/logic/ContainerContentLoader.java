@@ -1,5 +1,6 @@
 package nl.avans.logic;
 
+import nl.avans.ui.ContainerContent;
 import nl.avans.ui.ContainerContentHolder;
 
 import javax.swing.*;
@@ -13,10 +14,10 @@ import java.awt.event.MouseListener;
 public class ContainerContentLoader implements MouseListener {
 
     private ContainerContentHolder targetContainer;
-    private JPanel loadContainer;
+    private ContainerContent loadContainer;
     private JFrame frame;
 
-    public ContainerContentLoader(JFrame frame, ContainerContentHolder targetContainer, JPanel loadContainer) {
+    public ContainerContentLoader(JFrame frame, ContainerContentHolder targetContainer, ContainerContent loadContainer) {
         this.targetContainer = targetContainer;
         this.loadContainer = loadContainer;
         this.frame = frame;

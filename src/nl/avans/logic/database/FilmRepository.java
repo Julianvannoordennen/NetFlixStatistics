@@ -26,6 +26,20 @@ public class FilmRepository {
         return lijst;
     }
 
+    public ArrayList<Film> readByAccount(int subscriberNumber) {
+        ArrayList<Film> lijst = new ArrayList<>();
+        try {
+            ResultSet rs = sqlConnection.executeSql("SELECT Film.FilmId, Titel, LeeftijdsIndicatie, Taal, Tijdsduur, Genre FROM Film JOIN Bekeken ON Film.FilmId = Bekeken.Gezien WHERE Bekeken.AbonneeNummer=" + subscriberNumber);
+            while(rs.next()) {
+                lijst.add(new Film(rs.getInt("FilmId"),rs.getString("Titel"), rs.getString("LeeftijdsIndicatie"), rs.getString("Taal"), rs.getTime("Tijdsduur"), rs.getString("Genre")));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return lijst;
+    }
+
     public Film read(int filmId) {
         Film film= null;
         try

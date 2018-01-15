@@ -12,7 +12,7 @@ public class ContainerContentHolder extends JPanel {
         this.createComponents();
     }
 
-    public void viewContainer(JPanel container) {
+    public void viewContainer(ContainerContent container) {
 
         //Make them invisible
         this.removeAll();
@@ -21,6 +21,9 @@ public class ContainerContentHolder extends JPanel {
         this.add(container);
         this.repaint();
         this.revalidate();
+
+        //Refresh data inside the container
+        container.refresh();
     }
 
     private void createComponents() {

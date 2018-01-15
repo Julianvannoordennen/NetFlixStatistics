@@ -70,7 +70,6 @@ public class WatchedSelector implements ListSelectionListener {
             Episode episode = new EpisodeRepository(this.database).read(selectedWatched.getWatched());
             Film film = new FilmRepository(this.database).read(selectedWatched.getWatched());
             String watchedItemText = selectedWatched.getWatched() + ": " + ((episode == null) ? film.getTitle() : episode.getTitleEpisode());
-            System.out.println(watchedItemText);
             this.watched.getDropDown().setSelectedItem(watchedItemText);
         }
     }

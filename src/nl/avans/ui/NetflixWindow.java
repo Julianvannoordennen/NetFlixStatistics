@@ -2,6 +2,7 @@ package nl.avans.ui;
 
 import nl.avans.logic.ContainerContentLoader;
 import nl.avans.logic.database.Database;
+import nl.avans.ui.controls.ContainerMenuButton;
 import nl.avans.ui.controls.ImagePanel;
 import nl.avans.ui.overviews.*;
 
@@ -15,13 +16,12 @@ public class NetflixWindow implements Runnable {
 
     private JFrame frame;
     private Database database;
-    static final Color PRIMARY_COLOR = Color.BLACK;
-    static final Color SECONDARY_COLOR = new Color(215,23,31);
-    static final Color THIRD_COLOR = new Color(255,255,255,64);
-    static final Color FOURTH_COLOR = Color.WHITE;
-    static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 16);
-    static final Font FONT_BIG_ENABLED = new Font("Helvetica Neue", Font.BOLD, 16);
-    static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 12);
+    public static final Color PRIMARY_COLOR = Color.BLACK;
+    public static final Color SECONDARY_COLOR = new Color(215,23,31);
+    public static final Color THIRD_COLOR = new Color(255,255,255,64);
+    public static final Color FOURTH_COLOR = Color.WHITE;
+    public static final Font FONT_BIG = new Font("Helvetica Neue", Font.BOLD, 16);
+    public static final Font FONT_SMALL = new Font("Helvetica Neue", Font.ITALIC, 12);
 
     public NetflixWindow(Database database) {
         this.database = database;
@@ -63,7 +63,9 @@ public class NetflixWindow implements Runnable {
             new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress(database))),
             new ContainerMenuButton("Gem. kijktijd   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAverageWatchingTimes(database))),
             new ContainerMenuButton("16- Langst   ▶", new ContainerContentLoader(this.frame, holder, new ContainerLongestTimeYoungerThan16(database))),
-                new ContainerMenuButton("Enkele profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerSmallAccounts(database)))
+            new ContainerMenuButton("Enkele profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerSmallAccounts(database))),
+            new ContainerMenuButton("Bekeken films   ▶", new ContainerContentLoader(this.frame, holder, new ContainerWatchedFilms(database))),
+            new ContainerMenuButton("Geheel bekeken   ▶", new ContainerContentLoader(this.frame, holder, new ContainerFullWatchedFilm(database)))
         };
 
         //Add containers

@@ -1,6 +1,6 @@
 package nl.avans.ui;
 
-import nl.avans.logic.ContainerContentLoader;
+import nl.avans.ui.controls.ContainerMenuButton;
 
 import javax.swing.*;
 import java.awt.*;

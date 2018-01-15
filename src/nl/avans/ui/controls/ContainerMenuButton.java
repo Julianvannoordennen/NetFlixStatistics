@@ -1,6 +1,7 @@
-package nl.avans.ui;
+package nl.avans.ui.controls;
 
 import nl.avans.logic.ContainerContentLoader;
+import nl.avans.ui.NetflixWindow;
 
 import javax.swing.*;
 import java.awt.*;

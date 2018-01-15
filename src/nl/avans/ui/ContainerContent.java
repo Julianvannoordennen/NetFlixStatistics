@@ -8,13 +8,15 @@ import java.awt.*;
 public abstract class ContainerContent extends JPanel {
 
     protected Database database;
+    private String titleString;
 
     public ContainerContent(String titleString, Database database) {
+        this.titleString = titleString;
         this.database = database;
-        this.createComponents(titleString);
+        this.createComponents();
     }
 
-    private void createComponents(String titleString) {
+    private void createComponents() {
 
         //Set layout
         this.setBorder(BorderFactory.createEmptyBorder(25, 25, 25, 25));
@@ -22,10 +24,15 @@ public abstract class ContainerContent extends JPanel {
         this.setBackground(NetflixWindow.THIRD_COLOR);
 
         //Add title
-        JLabel title = new JLabel(titleString);
+        JLabel title = new JLabel(this.titleString);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         title.setForeground(NetflixWindow.SECONDARY_COLOR);
         title.setFont(NetflixWindow.FONT_BIG);
         this.add(title,BorderLayout.NORTH);
+    }
+
+    public void refresh() {
+        this.removeAll();
+        createComponents();
     }
 }
