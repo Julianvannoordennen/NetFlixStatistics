@@ -30,6 +30,7 @@ public class Watched {
         return this.percentage;
     }
 
+    // to set the information
     public void setSubscriberNumber(int subscriberNumber) {
         this.subscriberNumber = subscriberNumber;
     }
