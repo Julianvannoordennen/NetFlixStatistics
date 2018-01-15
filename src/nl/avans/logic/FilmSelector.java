@@ -13,6 +13,7 @@ import nl.avans.ui.controls.NetflixList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//to select films
 public class FilmSelector implements ActionListener {
 
     private NetflixComboBox<String> filmSelector;

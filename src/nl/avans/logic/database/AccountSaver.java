@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+//to make an account the right way
 public class AccountSaver implements ActionListener {
 
     private NetflixLabelField subscriberNumber;

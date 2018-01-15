@@ -8,6 +8,7 @@ import nl.avans.ui.controls.NetflixLabelDrop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//to select a specific profile
 public class ProgressAccountSelector implements ActionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;

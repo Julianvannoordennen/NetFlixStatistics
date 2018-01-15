@@ -7,6 +7,7 @@ import nl.avans.models.database.Watched;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// All parts that need to be noted about a 'watched' show
 public class WatchedRepository {
     private Database sqlConnection;
 
@@ -14,6 +15,7 @@ public class WatchedRepository {
         this.sqlConnection = sqlConnection;
     }
 
+    // A list with all watched shows
     public ArrayList<Watched> readAll() {
         ArrayList<Watched> lijst = new ArrayList<>();
         try {
@@ -42,7 +44,7 @@ public class WatchedRepository {
         }
         return watched;
     }
-
+    // To add a watched show
     public boolean create(Watched watched) {
         try
         {
@@ -54,8 +56,7 @@ public class WatchedRepository {
         }
         return false;
     }
-
-
+    //How far a show has been watched on average
     public ResultSet readAvgAccountAndSerie(String account, String serie) {
         ArrayList<ResultSet> lijst = new ArrayList<>();
         try {
@@ -70,7 +71,7 @@ public class WatchedRepository {
         }
         return null;
     }
-
+    //to update what has been watched
     public boolean update(Watched watched) {
         try
         {

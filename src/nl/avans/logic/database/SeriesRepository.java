@@ -5,6 +5,7 @@ import nl.avans.models.database.Series;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//To select a specific series
 public class SeriesRepository {
     private Database sqlConnection;
 
@@ -40,7 +41,7 @@ public class SeriesRepository {
         }
         return series;
     }
-
+    // to create new series
     public boolean create(Series series) {
         try
         {
@@ -52,7 +53,7 @@ public class SeriesRepository {
         }
         return false;
     }
-
+    //To delete series
     public boolean delete(Series series) {
         if(series==null) return false;
         return delete(series.getSeries());
