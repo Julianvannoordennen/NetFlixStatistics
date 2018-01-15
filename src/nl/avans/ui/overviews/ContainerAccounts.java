@@ -9,6 +9,7 @@ import nl.avans.models.database.Account;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
+//The accountpage layout
 public class ContainerAccounts extends ContainerContent {
 
     public ContainerAccounts(Database database) {

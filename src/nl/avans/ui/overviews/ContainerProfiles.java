@@ -6,7 +6,7 @@ import nl.avans.models.database.Account;
 import nl.avans.models.database.Profile;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
-
+//page for watching all profiles
 public class ContainerProfiles extends ContainerContent {
 
     public ContainerProfiles(Database database) {

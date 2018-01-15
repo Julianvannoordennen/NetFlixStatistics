@@ -5,6 +5,7 @@ import nl.avans.ui.controls.ContainerMenuButton;
 import javax.swing.*;
 import java.awt.*;
 
+// the menu layout and items
 public class ContainerMenu extends JPanel {
 
     public ContainerMenu(ContainerMenuButton[] menuItems) {

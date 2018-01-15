@@ -4,7 +4,7 @@ import nl.avans.ui.NetflixWindow;
 
 import javax.swing.*;
 import java.awt.*;
-
+// the base of a label
 public class NetflixLabel extends JLabel {
 
     public NetflixLabel(String text) {

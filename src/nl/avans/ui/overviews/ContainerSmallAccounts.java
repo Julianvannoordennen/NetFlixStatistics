@@ -7,6 +7,7 @@ import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.NetflixLabel;
 import nl.avans.ui.controls.NetflixList;
 
+// accounts with only 1 profile
 public class ContainerSmallAccounts extends ContainerContent {
 
     private NetflixList<String> listContent;

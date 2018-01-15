@@ -12,6 +12,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+//different components of the layout
 public class NetflixWindow implements Runnable {
 
     private JFrame frame;

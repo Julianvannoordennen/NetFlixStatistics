@@ -5,6 +5,7 @@ import nl.avans.logic.database.Database;
 import javax.swing.*;
 import java.awt.*;
 
+//Title and layout of the application
 public abstract class ContainerContent extends JPanel {
 
     protected Database database;

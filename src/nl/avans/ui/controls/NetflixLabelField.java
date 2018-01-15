@@ -5,6 +5,7 @@ import nl.avans.ui.NetflixWindow;
 import javax.swing.*;
 import java.awt.*;
 
+//for a subscriber
 public class NetflixLabelField extends JPanel {
 
     private NetflixLabel subscriberNumberLabel;

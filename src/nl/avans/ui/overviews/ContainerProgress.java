@@ -7,6 +7,7 @@ import nl.avans.models.database.*;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
+//for the "Progressie" part of the program
 public class ContainerProgress extends ContainerContent {
 
     public ContainerProgress(Database database) {

@@ -2,6 +2,7 @@ package nl.avans.ui.controls;
 
 import javax.swing.*;
 
+//the base of all the lists
 public class NetflixList<E> extends JScrollPane {
 
     private DefaultListModel<E> listContent;
