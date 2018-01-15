@@ -1,5 +1,6 @@
 package nl.avans.models.database;
 
+// Shows everything needed to make an account and returns them.
 public class Account {
     private int subscriberNumber;
     private String name;
@@ -17,30 +18,32 @@ public class Account {
         this.city = city;
     }
 
+    // returns the subscriber's number
     public int getSubscriberNumber() {
         return this.subscriberNumber;
     }
-
+// returns the subscriber's name
     public String getName() {
         return this.name;
     }
-
+// returns the street entered when making the account
     public String getStreet() {
         return this.street;
     }
-
+// returns the postal code entered when making the account
     public String getPostalCode() {
         return this.postalCode;
     }
-
+// returns the entered housenumber
     public int getHouseNumber() {
         return this.houseNumber;
     }
-
+// returns the city the subscriber lives in
     public String getCity() {
         return this.city;
     }
-
+// sets all parts of the account
+    
     public void setSubscriberNumber(int subscriberNumber) {
         this.subscriberNumber = subscriberNumber;
     }
