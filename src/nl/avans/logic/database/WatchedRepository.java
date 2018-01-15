@@ -1,5 +1,7 @@
 package nl.avans.logic.database;
 
+import nl.avans.models.database.Episode;
+import nl.avans.models.database.Profile;
 import nl.avans.models.database.Watched;
 
 import java.sql.ResultSet;
@@ -44,7 +46,35 @@ public class WatchedRepository {
     public boolean create(Watched watched) {
         try
         {
-            String sqlQuery = "INSERT INTO Bekeken VALUES (" + watched.getSubscriberNumber() + ", " + watched.getProfileNumber() + ", " + watched.getWatched() + ", " + watched.getPercentage() + ")";
+            String sqlQuery = "INSERT INTO Bekeken VALUES (" + watched.getSubscriberNumber() + ", " + watched.getWatched() + ", " + watched.getPercentage() + ", " + watched.getProfileNumber() + ")";
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+
+    public ResultSet readAvgAccountAndSerie(String account, String serie) {
+        ArrayList<ResultSet> lijst = new ArrayList<>();
+        try {
+            if (account.equals("0")) {
+                return sqlConnection.executeSql("SELECT AfleveringId, AVG(Percentage) as Percentage, Aflevering.TitelAflevering FROM Bekeken INNER JOIN Aflevering ON Bekeken.Gezien = Aflevering.AfleveringId WHERE Serie='" + serie + "' GROUP BY AfleveringId, Aflevering.TitelAflevering");
+            } else {
+                return sqlConnection.executeSql("SELECT AfleveringId, AVG(Percentage) as Percentage, Aflevering.TitelAflevering FROM Aflevering INNER JOIN Bekeken ON Aflevering.AfleveringId = Bekeken.Gezien WHERE Serie = '" + serie + "' AND AbonneeNummer = " + account + " GROUP BY AfleveringId, AbonneeNummer, Aflevering.TitelAflevering");
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return null;
+    }
+
+    public boolean update(Watched watched) {
+        try
+        {
+            String sqlQuery = "UPDATE Bekeken SET Percentage=" + watched.getPercentage() + " WHERE Gezien=" + watched.getWatched() + " AND Abonneenummer=" + watched.getSubscriberNumber() + " AND ProfielNummer=" + watched.getProfileNumber();
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {
@@ -61,7 +91,7 @@ public class WatchedRepository {
     public boolean delete(int subscriberNumber, int profileNumber, int watched) {
         try
         {
-            String sqlQuery = "DELETE Bekeken WHERE AbonneeNummer=" + subscriberNumber + " AND ProfileNumber=" + profileNumber + " AND Gezien=" + watched;
+            String sqlQuery = "DELETE Bekeken WHERE AbonneeNummer=" + subscriberNumber + " AND ProfielNummer=" + profileNumber + " AND Gezien=" + watched;
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

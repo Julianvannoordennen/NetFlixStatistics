@@ -26,11 +26,11 @@ public class ProfileRepository {
         return lijst;
     }
 
-    public Profile read(int subscriberNumber) {
+    public Profile read(int profileNumber) {
         Profile profile= null;
         try
         {
-            String sqlQuery = "SELECT * FROM Profiel WHERE Abonneenummer=" + subscriberNumber;
+            String sqlQuery = "SELECT * FROM Profiel WHERE ProfielNummer=" + profileNumber;
             ResultSet rs = sqlConnection.executeSql(sqlQuery);
             rs.next();
             profile = new Profile(rs.getInt("Profielnummer"),rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum"));
@@ -45,6 +45,18 @@ public class ProfileRepository {
         try
         {
             String sqlQuery = "INSERT INTO Profiel VALUES (" + profile.getProfileNumber() + ", " + profile.getSubscriberNumber() + ", '" + profile.getProfileName() + "', '" + profile.getBirthDate() + "')";
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
+    public boolean update(Profile profile) {
+        try
+        {
+            String sqlQuery = "UPDATE Profiel SET Profielnaam='" + profile.getProfileName() + "', Geboortedatum=" + profile.getBirthDate() + " WHERE ProfielNummer=" + profile.getProfileNumber() + " AND Abonneenummer=" + profile.getSubscriberNumber();
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

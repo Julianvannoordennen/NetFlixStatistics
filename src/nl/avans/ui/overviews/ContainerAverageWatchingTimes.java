@@ -32,9 +32,10 @@ public class ContainerAverageWatchingTimes extends ContainerContent {
         NetflixLabel accountLabel = new NetflixLabel("Kies één account");
         this.add(accountLabel);
 
-        //Create serie selector and add al series
+        //Create serie selector and add all series
         NetflixComboBox<String> accountSelector = new NetflixComboBox<String>();
         this.add(accountSelector);
+        accountSelector.addItem("-- Alle accounts --");
         for (Account account : new AccountRepository(this.database).readAll())
             accountSelector.addItem(account.getName());
 
@@ -52,12 +53,13 @@ public class ContainerAverageWatchingTimes extends ContainerContent {
         NetflixLabel percentagesLabel = new NetflixLabel("Percentages per episode");
         this.add(percentagesLabel);
 
-        //Create percentage overview and add all episodes
+        //Create percentage overview
         NetflixList<String> listContent = new NetflixList<String>();
         this.add(listContent);
 
         //Create action and show first item
         AverageWatchingTimesViewer action = new AverageWatchingTimesViewer(accountSelector, serieSelector,listContent, this.database);
+        accountSelector.addActionListener(action);
         serieSelector.addActionListener(action);
         action.actionPerformed(null);
     }

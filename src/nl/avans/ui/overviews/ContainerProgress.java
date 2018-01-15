@@ -1,12 +1,13 @@
 package nl.avans.ui.overviews;
 
+import nl.avans.logic.WatchedSelector;
 import nl.avans.logic.database.*;
+import nl.avans.models.database.Account;
+import nl.avans.models.database.Profile;
+import nl.avans.models.database.Series;
 import nl.avans.models.database.Watched;
 import nl.avans.ui.ContainerContent;
-import nl.avans.ui.controls.NetflixLabel;
-import nl.avans.ui.controls.NetflixLabelField;
-import nl.avans.ui.controls.NetflixList;
-import nl.avans.ui.controls.NetflixSaveDelete;
+import nl.avans.ui.controls.*;
 
 public class ContainerProgress extends ContainerContent {
 
@@ -31,14 +32,30 @@ public class ContainerProgress extends ContainerContent {
             listContent.getDefaultListModel().addElement(watched.getSubscriberNumber() + ": ," + watched.getProfileNumber() + ": ," + watched.getWatched() + ": ," + watched.getPercentage());
 
         //Create labels and fields
-        NetflixLabelField subscriberNumber = new NetflixLabelField("Subscriptienummer:   ", this);
-        NetflixLabelField profileNumber = new NetflixLabelField("Profielnummer:   ", this);
-        NetflixLabelField watched = new NetflixLabelField("Geziennummer:   ", this);
+        NetflixLabelDrop<Integer> subscriberNumber = new NetflixLabelDrop<Integer>("Subscriptienummer:   ", this);
+        NetflixLabelDrop<Integer> profileNumber = new NetflixLabelDrop<Integer>("Profielnummer:   ", this);
+        NetflixLabelDrop<String> watched = new NetflixLabelDrop<String>("Geziennummer:   ", this);
         NetflixLabelField percentage = new NetflixLabelField("Percentage:   ", this);
         this.add(subscriberNumber);
         this.add(profileNumber);
         this.add(watched);
         this.add(percentage);
+
+        //Load LabelDrop data
+        for (Account account : new AccountRepository(this.database).readAll()) {
+            subscriberNumber.getDropDown().addItem(account.getSubscriberNumber() + ": " + account.getName());
+            subscriberNumber.addReturnValue(account.getSubscriberNumber());
+        }
+
+        for (Profile profile : new ProfileRepository(this.database).readAll()) {
+            profileNumber.getDropDown().addItem(profile.getProfileName() + ": " + profile.getProfileName());
+            profileNumber.addReturnValue(profile.getProfileNumber());
+        }
+
+        for (Series serie : new SeriesRepository(this.database).readAll()) {
+            watched.getDropDown().addItem(serie.getSeries());
+            watched.addReturnValue(serie.getSeries());
+        }
 
         //Create save and delete button
         NetflixSaveDelete saveDelete = new NetflixSaveDelete();

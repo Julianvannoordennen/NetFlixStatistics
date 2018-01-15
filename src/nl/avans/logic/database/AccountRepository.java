@@ -53,6 +53,18 @@ public class AccountRepository {
         return false;
     }
 
+    public boolean update(Account account) {
+        try
+        {
+            String sqlQuery = "UPDATE Account SET Naam='" + account.getName() + "', Straat='" + account.getStreet() + "', Postcode='" + account.getPostalCode() + "', Huisnummer=" + account.getHouseNumber() + ", Plaats='" + account.getCity() + "' WHERE AbonneeNummer=" + account.getSubscriberNumber();
+            return sqlConnection.executeSqlNoResult(sqlQuery);
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     public boolean delete(Account account) {
         if(account==null) return false;
         return delete(account.getSubscriberNumber());

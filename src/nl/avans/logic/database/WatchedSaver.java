@@ -2,6 +2,7 @@ package nl.avans.logic.database;
 
 
 import nl.avans.models.database.Watched;
+import nl.avans.ui.controls.NetflixLabelDrop;
 import nl.avans.ui.controls.NetflixLabelField;
 import nl.avans.ui.controls.NetflixList;
 
@@ -11,14 +12,14 @@ import java.awt.event.ActionListener;
 
 public class WatchedSaver implements ActionListener {
 
-    private NetflixLabelField subscriberNumber;
-    private NetflixLabelField profileNumber;
-    private NetflixLabelField watched;
+    private NetflixLabelDrop<Integer> subscriberNumber;
+    private NetflixLabelDrop<Integer> profileNumber;
+    private NetflixLabelDrop<String> watched;
     private NetflixLabelField percentage;
     private NetflixList<String> list;
     private Database database;
 
-    public WatchedSaver(NetflixLabelField subscriberNumber, NetflixLabelField profileNumber, NetflixLabelField watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
+    public WatchedSaver(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<String> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
         this.subscriberNumber = subscriberNumber;
         this.profileNumber = profileNumber;
         this.watched = watched;
@@ -35,9 +36,9 @@ public class WatchedSaver implements ActionListener {
 
         //Create Account according to fields
         Watched watched = new Watched(
-                Integer.parseInt(this.subscriberNumber.getField().getText()),
-                Integer.parseInt(this.profileNumber.getField().getText()),
-                Integer.parseInt(this.watched.getField().getText()),
+                this.subscriberNumber.getReturnValue(),
+                this.profileNumber.getReturnValue(),
+                Integer.parseInt(this.watched.getReturnValue()),
                 Integer.parseInt(this.percentage.getField().getText())
         );
 
@@ -45,19 +46,20 @@ public class WatchedSaver implements ActionListener {
         if (this.list.getList().getSelectedIndex() == 0) {
 
             //Create, clear fields
-            this.subscriberNumber.getField().setText("");
-            this.profileNumber.getField().setText("");
-            this.watched.getField().setText("");
+            this.subscriberNumber.getDropDown().setSelectedIndex(0);
+            this.profileNumber.getDropDown().setSelectedIndex(0);
+            this.watched.getDropDown().setSelectedIndex(0);
             this.percentage.getField().setText("");
+
+            //Save
+            watchedRepository.create(watched);
 
         } else {
 
-            //Update, delete current but keep fields
-            watchedRepository.delete(watched);
+            //Update
+            watchedRepository.update(watched);
         }
 
-        //Save
-        watchedRepository.create(watched);
 
         //Update list
         DefaultListModel<String> dlm = this.list.getDefaultListModel();

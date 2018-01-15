@@ -49,6 +49,7 @@ public class AccountSaver implements ActionListener {
                 this.city.getField().getText()
         );
 
+        /*
         if (!this.subscriberNumber.getField().getText().matches("[0-9]{7}")
                 || !this.name.getField().getText().matches("[a-zA-Z\\.]{3,50}")
                 || !this.street.getField().getText().matches("[a-zA-Z]{3,50}")
@@ -56,7 +57,7 @@ public class AccountSaver implements ActionListener {
                 || !this.houseNumber.getField().getText().matches("[0-9]")
                 || !this.city.getField().getText().matches("[a-zA-Z]{1,60}")) {
             System.out.println("The input values are incorrect.");
-        }
+        }*/
 
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {
@@ -69,14 +70,15 @@ public class AccountSaver implements ActionListener {
             this.houseNumber.getField().setText("");
             this.city.getField().setText("");
 
+            //Save
+            accountRepository.create(account);
+
         } else {
 
-            //Update, delete current but keep fields
-            accountRepository.delete(account);
+            //Update
+            accountRepository.update(account);
         }
 
-        //Save
-        accountRepository.create(account);
 
         //Update list
         DefaultListModel<String> dlm = this.list.getDefaultListModel();

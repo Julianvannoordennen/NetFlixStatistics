@@ -1,16 +1,11 @@
 package nl.avans.ui.overviews;
 
 import nl.avans.logic.ProfileSelector;
-import nl.avans.logic.database.Database;
-import nl.avans.logic.database.ProfileDeleter;
-import nl.avans.logic.database.ProfileRepository;
-import nl.avans.logic.database.ProfileSaver;
+import nl.avans.logic.database.*;
+import nl.avans.models.database.Account;
 import nl.avans.models.database.Profile;
 import nl.avans.ui.ContainerContent;
-import nl.avans.ui.controls.NetflixLabel;
-import nl.avans.ui.controls.NetflixLabelField;
-import nl.avans.ui.controls.NetflixList;
-import nl.avans.ui.controls.NetflixSaveDelete;
+import nl.avans.ui.controls.*;
 
 public class ContainerProfiles extends ContainerContent {
 
@@ -36,13 +31,19 @@ public class ContainerProfiles extends ContainerContent {
 
         //Create labels and fields
         NetflixLabelField profileNumber = new NetflixLabelField("Profielnummer:   ", this);
-        NetflixLabelField subscriberNumber = new NetflixLabelField("Subscriptienummer:   ", this);
+        NetflixLabelDrop<Integer> subscriberNumber = new NetflixLabelDrop<Integer>("Subscriptienummer:   ", this);
         NetflixLabelField profileName = new NetflixLabelField("Profielnaam:   ", this);
         NetflixLabelField birthDate = new NetflixLabelField("Geboortedatum:   ", this);
         this.add(profileNumber);
         this.add(subscriberNumber);
         this.add(profileName);
         this.add(birthDate);
+
+        //Load LabelDrop data
+        for (Account account : new AccountRepository(this.database).readAll()) {
+            subscriberNumber.getDropDown().addItem(account.getSubscriberNumber() + ": " + account.getName());
+            subscriberNumber.addReturnValue(account.getSubscriberNumber());
+        }
 
         //Create save and delete button
         NetflixSaveDelete saveDelete = new NetflixSaveDelete();

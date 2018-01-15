@@ -26,6 +26,21 @@ public class FilmRepository {
         return lijst;
     }
 
+    public Film read(int filmId) {
+        Film film= null;
+        try
+        {
+            String sqlQuery = "SELECT * FROM Film WHERE Film.FilmId=" + filmId;
+            ResultSet rs = sqlConnection.executeSql(sqlQuery);
+            rs.next();
+            film = new Film(rs.getInt("FilmId"),rs.getString("Titel"), rs.getString("LeeftijdsIndicatie"), rs.getString("Taal"), rs.getTime("Tijdsduur"), rs.getString("Genre"));
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return film;
+    }
+
     public Film readLongestTimeYoungerThan16() {
         Film film= null;
         try
