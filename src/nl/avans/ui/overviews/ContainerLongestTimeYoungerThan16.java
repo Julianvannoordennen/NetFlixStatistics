@@ -11,7 +11,7 @@ public class ContainerLongestTimeYoungerThan16 extends ContainerContent {
     public ContainerLongestTimeYoungerThan16(Database database) {
 
         //Add title and database
-        super("Langste film voor onder de 16", database);
+        super("Langste film voor onder de zestien", database);
 
         //Create controls
         this.createComponents();

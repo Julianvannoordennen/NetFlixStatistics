@@ -36,7 +36,8 @@ public class FilmRepository {
             film = new Film(rs.getInt("FilmId"),rs.getString("Titel"), rs.getString("LeeftijdsIndicatie"), rs.getString("Taal"), rs.getTime("Tijdsduur"), rs.getString("Genre"));
         }
         catch(Exception e) {
-            System.out.println(e);
+            if (!e.toString().contains("The result set has no current row."))
+                System.out.println(e);
         }
         return film;
     }

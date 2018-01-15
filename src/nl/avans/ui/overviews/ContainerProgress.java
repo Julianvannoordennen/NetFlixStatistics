@@ -1,11 +1,9 @@
 package nl.avans.ui.overviews;
 
+import nl.avans.logic.ProgressAccountSelector;
 import nl.avans.logic.WatchedSelector;
 import nl.avans.logic.database.*;
-import nl.avans.models.database.Account;
-import nl.avans.models.database.Profile;
-import nl.avans.models.database.Series;
-import nl.avans.models.database.Watched;
+import nl.avans.models.database.*;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
@@ -28,13 +26,14 @@ public class ContainerProgress extends ContainerContent {
 
         //Create 'add user' and add existing users
         listContent.getDefaultListModel().addElement("-- Nieuwe progressie aanmaken --");
-        for (Watched watched : new WatchedRepository(this.database).readAll())
+        for (Watched watched : new WatchedRepository(this.database).readAll()) {
             listContent.getDefaultListModel().addElement(watched.getSubscriberNumber() + ": ," + watched.getProfileNumber() + ": ," + watched.getWatched() + ": ," + watched.getPercentage());
+        }
 
         //Create labels and fields
         NetflixLabelDrop<Integer> subscriberNumber = new NetflixLabelDrop<Integer>("Subscriptienummer:   ", this);
         NetflixLabelDrop<Integer> profileNumber = new NetflixLabelDrop<Integer>("Profielnummer:   ", this);
-        NetflixLabelDrop<String> watched = new NetflixLabelDrop<String>("Geziennummer:   ", this);
+        NetflixLabelDrop<Integer> watched = new NetflixLabelDrop<Integer>("Geziennummer:   ", this);
         NetflixLabelField percentage = new NetflixLabelField("Percentage:   ", this);
         this.add(subscriberNumber);
         this.add(profileNumber);
@@ -47,14 +46,14 @@ public class ContainerProgress extends ContainerContent {
             subscriberNumber.addReturnValue(account.getSubscriberNumber());
         }
 
-        for (Profile profile : new ProfileRepository(this.database).readAll()) {
-            profileNumber.getDropDown().addItem(profile.getProfileName() + ": " + profile.getProfileName());
-            profileNumber.addReturnValue(profile.getProfileNumber());
+        for (Episode episode : new EpisodeRepository(this.database).readAll()) {
+            watched.getDropDown().addItem(episode.getEpisodeId() + ": " + episode.getTitleEpisode());
+            watched.addReturnValue(episode.getEpisodeId());
         }
 
-        for (Series serie : new SeriesRepository(this.database).readAll()) {
-            watched.getDropDown().addItem(serie.getSeries());
-            watched.addReturnValue(serie.getSeries());
+        for (Film film : new FilmRepository(this.database).readAll()) {
+            watched.getDropDown().addItem(film.getFilmId() + ": " + film.getTitle());
+            watched.addReturnValue(film.getFilmId());
         }
 
         //Create save and delete button
@@ -71,5 +70,10 @@ public class ContainerProgress extends ContainerContent {
 
         WatchedDeleter deleter = new WatchedDeleter(subscriberNumber,profileNumber,watched, listContent,this.database);
         saveDelete.getDelete().addActionListener(deleter);
+
+        ProgressAccountSelector progressAccountSelector = new ProgressAccountSelector(subscriberNumber,profileNumber,this.database);
+        subscriberNumber.getDropDown().addActionListener(progressAccountSelector);
+        subscriberNumber.getDropDown().setSelectedIndex(0);
+
     }
 }

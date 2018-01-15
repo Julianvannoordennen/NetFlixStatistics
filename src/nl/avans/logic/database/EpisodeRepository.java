@@ -36,7 +36,8 @@ public class EpisodeRepository {
             episode = new Episode(rs.getInt("AfleveringId"),rs.getString("Serie"), rs.getString("Seizoen"), rs.getString("TitelAflevering"), rs.getTime("Tijdsduur"));
         }
         catch(Exception e) {
-            System.out.println(e);
+            if (!e.toString().contains("The result set has no current row."))
+                System.out.println(e);
         }
         return episode;
     }

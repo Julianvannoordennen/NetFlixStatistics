@@ -14,12 +14,12 @@ public class WatchedSaver implements ActionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;
     private NetflixLabelDrop<Integer> profileNumber;
-    private NetflixLabelDrop<String> watched;
+    private NetflixLabelDrop<Integer> watched;
     private NetflixLabelField percentage;
     private NetflixList<String> list;
     private Database database;
 
-    public WatchedSaver(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<String> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
+    public WatchedSaver(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<Integer> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
         this.subscriberNumber = subscriberNumber;
         this.profileNumber = profileNumber;
         this.watched = watched;
@@ -38,7 +38,7 @@ public class WatchedSaver implements ActionListener {
         Watched watched = new Watched(
                 this.subscriberNumber.getReturnValue(),
                 this.profileNumber.getReturnValue(),
-                Integer.parseInt(this.watched.getReturnValue()),
+                this.watched.getReturnValue(),
                 Integer.parseInt(this.percentage.getField().getText())
         );
 

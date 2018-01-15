@@ -26,6 +26,20 @@ public class ProfileRepository {
         return lijst;
     }
 
+    public ArrayList<Profile> readAllBySubscriberNumber(int subscriberNumber) {
+        ArrayList<Profile> lijst = new ArrayList<>();
+        try {
+            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Profiel WHERE Abonneenummer=" + subscriberNumber);
+            while(rs.next()) {
+                lijst.add(new Profile(rs.getInt("Profielnummer"),rs.getInt("Abonneenummer"),rs.getString("Profielnaam"), rs.getString("Geboortedatum")));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return lijst;
+    }
+
     public Profile read(int profileNumber) {
         Profile profile= null;
         try

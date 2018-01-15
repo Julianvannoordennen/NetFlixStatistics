@@ -30,7 +30,6 @@ public class ContainerContentLoader implements MouseListener {
 
         //Load target container
         this.targetContainer.viewContainer(this.loadContainer);
-
     }
 
     @Override

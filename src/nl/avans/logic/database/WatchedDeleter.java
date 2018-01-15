@@ -13,11 +13,11 @@ public class WatchedDeleter implements ActionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;
     private NetflixLabelDrop<Integer> profileNumber;
-    private NetflixLabelDrop<String> watched;
+    private NetflixLabelDrop<Integer> watched;
     private NetflixList<String> list;
     private Database database;
 
-    public WatchedDeleter(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<String> watched, NetflixList<String> list, Database database) {
+    public WatchedDeleter(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<Integer> watched, NetflixList<String> list, Database database) {
         this.subscriberNumber = subscriberNumber;
         this.profileNumber = profileNumber;
         this.watched = watched;
@@ -32,7 +32,7 @@ public class WatchedDeleter implements ActionListener {
         WatchedRepository watchedRepository = new WatchedRepository(this.database);
 
         //Delete current
-        watchedRepository.delete(this.subscriberNumber.getReturnValue(),this.profileNumber.getReturnValue(),Integer.parseInt(this.watched.getReturnValue()));
+        watchedRepository.delete(this.subscriberNumber.getReturnValue(),this.profileNumber.getReturnValue(),this.watched.getReturnValue());
 
         //Update list
         DefaultListModel<String> dlm = this.list.getDefaultListModel();

@@ -26,6 +26,20 @@ public class AccountRepository {
         return lijst;
     }
 
+    public ArrayList<Account> readAccountsWithOneProfile() {
+        ArrayList<Account> lijst = new ArrayList<>();
+        try {
+            ResultSet rs = sqlConnection.executeSql("SELECT * FROM Account WHERE Account.AbonneeNummer IN (SELECT Account.AbonneeNummer FROM Account INNER JOIN Profiel ON Account.AbonneeNummer = Profiel.Abonneenummer GROUP BY Account.AbonneeNummer HAVING COUNT(Account.AbonneeNummer) = 1)");
+            while(rs.next()) {
+                lijst.add(new Account(rs.getInt("AbonneeNummer"),rs.getString("Naam"), rs.getString("Straat"), rs.getString("Postcode"), rs.getInt("Huisnummer"), rs.getString("Plaats")));
+            }
+        }
+        catch(Exception e) {
+            System.out.println(e);
+        }
+        return lijst;
+    }
+
     public Account read(int subscriberNumber) {
         Account account = null;
         try

@@ -13,12 +13,12 @@ public class WatchedSelector implements ListSelectionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;
     private NetflixLabelDrop<Integer> profileNumber;
-    private NetflixLabelDrop<String> watched;
+    private NetflixLabelDrop<Integer> watched;
     private NetflixLabelField percentage;
     private NetflixList<String> list;
     private Database database;
 
-    public WatchedSelector(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<String> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
+    public WatchedSelector(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<Integer> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
         this.subscriberNumber = subscriberNumber;
         this.profileNumber = profileNumber;
         this.watched = watched;
@@ -68,7 +68,8 @@ public class WatchedSelector implements ListSelectionListener {
         if (selectedWatched.getWatched() > 0) {
             Episode episode = new EpisodeRepository(this.database).read(selectedWatched.getWatched());
             Film film = new FilmRepository(this.database).read(selectedWatched.getWatched());
-            String watchedItemText = selectedWatched.getWatched() + ": " + episode == null ? film.getTitle() : episode.getTitleEpisode();
+            String watchedItemText = selectedWatched.getWatched() + ": " + ((episode == null) ? film.getTitle() : episode.getTitleEpisode());
+            System.out.println(watchedItemText);
             this.watched.getDropDown().setSelectedItem(watchedItemText);
         }
     }

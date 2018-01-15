@@ -32,6 +32,10 @@ public class NetflixLabelDrop<E> extends JPanel {
         return this.returnList.get(this.dropdown.getSelectedIndex());
     }
 
+    public void clearReturnValues() {
+        this.returnList.clear();
+    }
+
     private void setDefault(String labelText, JPanel applyContainer) {
 
         //Instantiate
