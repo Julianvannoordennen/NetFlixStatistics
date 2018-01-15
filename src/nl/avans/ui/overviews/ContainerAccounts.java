@@ -9,10 +9,15 @@ import nl.avans.models.database.Account;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
+import java.awt.*;
+
 public class ContainerAccounts extends ContainerContent {
 
-    public ContainerAccounts(Database database) {
+    private Frame frame;
+
+    public ContainerAccounts(Database database, Frame frame) {
         super("Accounts", database);
+        this.frame = frame;
         this.createComponents();
     }
 
@@ -55,7 +60,7 @@ public class ContainerAccounts extends ContainerContent {
         listContent.getList().addListSelectionListener(accountSelector);
         listContent.getList().setSelectedIndex(0);
 
-        AccountSaver saver = new AccountSaver(subscriberNumber,name,street,postalCode,houseNumber,city,listContent,this.database);
+        AccountSaver saver = new AccountSaver(subscriberNumber,name,street,postalCode,houseNumber,city,listContent,this.database, frame);
         saveDelete.getSave().addActionListener(saver);
 
         AccountDeleter deleter = new AccountDeleter(subscriberNumber, listContent,this.database);

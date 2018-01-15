@@ -7,6 +7,7 @@ import nl.avans.ui.controls.NetflixLabelField;
 import nl.avans.ui.controls.NetflixList;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -18,18 +19,31 @@ public class WatchedSaver implements ActionListener {
     private NetflixLabelField percentage;
     private NetflixList<String> list;
     private Database database;
+    private Frame frame;
 
-    public WatchedSaver(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<Integer> watched, NetflixLabelField percentage, NetflixList<String> list, Database database) {
+    public WatchedSaver(NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelDrop<Integer> profileNumber, NetflixLabelDrop<Integer> watched, NetflixLabelField percentage, NetflixList<String> list, Database database, Frame frame) {
         this.subscriberNumber = subscriberNumber;
         this.profileNumber = profileNumber;
         this.watched = watched;
         this.percentage = percentage;
         this.list = list;
         this.database = database;
+        this.frame = frame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        //Check if field is correct
+        Boolean error = false;
+        try {
+            Integer percentage = Integer.parseInt(this.percentage.getField().getText());
+            error = percentage < 1 || percentage > 100;
+        } catch (Exception ex) {error = true;}
+        if (error) {
+            JOptionPane.showMessageDialog(frame, "- Het percentage moet binnen 1 en 100 zitten\n","Foute invoer", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         //Create Account repository
         WatchedRepository watchedRepository = new WatchedRepository(this.database);

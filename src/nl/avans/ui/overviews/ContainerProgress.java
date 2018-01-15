@@ -7,10 +7,15 @@ import nl.avans.models.database.*;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
+import java.awt.*;
+
 public class ContainerProgress extends ContainerContent {
 
-    public ContainerProgress(Database database) {
+    private Frame frame;
+
+    public ContainerProgress(Database database, Frame frame) {
         super("Progressie", database);
+        this.frame = frame;
         this.createComponents();
     }
 
@@ -66,7 +71,7 @@ public class ContainerProgress extends ContainerContent {
         listContent.getList().addListSelectionListener(watchedSelector);
         listContent.getList().setSelectedIndex(0);
 
-        WatchedSaver saver = new WatchedSaver(subscriberNumber,profileNumber,watched,percentage,listContent,this.database);
+        WatchedSaver saver = new WatchedSaver(subscriberNumber,profileNumber,watched,percentage,listContent,this.database, frame);
         saveDelete.getSave().addActionListener(saver);
 
         WatchedDeleter deleter = new WatchedDeleter(subscriberNumber,profileNumber,watched, listContent,this.database);

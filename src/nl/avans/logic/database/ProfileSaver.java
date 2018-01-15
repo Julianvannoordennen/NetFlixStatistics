@@ -6,6 +6,7 @@ import nl.avans.ui.controls.NetflixLabelField;
 import nl.avans.ui.controls.NetflixList;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,14 +18,16 @@ public class ProfileSaver implements ActionListener {
     private NetflixLabelField birthDate;
     private NetflixList<String> list;
     private Database database;
+    private Frame frame;
 
-    public ProfileSaver(NetflixLabelField profileNumber, NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelField profileName, NetflixLabelField birthDate, NetflixList<String> list, Database database) {
+    public ProfileSaver(NetflixLabelField profileNumber, NetflixLabelDrop<Integer> subscriberNumber, NetflixLabelField profileName, NetflixLabelField birthDate, NetflixList<String> list, Database database, Frame frame) {
         this.profileNumber = profileNumber;
         this.subscriberNumber = subscriberNumber;
         this.profileName = profileName;
         this.birthDate = birthDate;
         this.list = list;
         this.database = database;
+        this.frame = frame;
     }
 
     @Override
@@ -33,6 +36,16 @@ public class ProfileSaver implements ActionListener {
         //Create Account repository
         ProfileRepository profileRepository = new ProfileRepository(this.database);
 
+        //Check if fields are correct
+        String error = "";
+        if (!this.profileNumber.getField().getText().matches("[1-9][0-9]{0,7}")) error += "- Profielnummer moet minder zijn dan 9999999 en meer dan 0\n";
+        if (!this.profileName.getField().getText().matches("[a-zA-Z]{1,50}")) error += "- Profielnaam moet 50 of minder en 1 of meer letters hebben\n";
+        if (!this.birthDate.getField().getText().matches("(0[1-9]|[12]\\d|3[01])-(0[1-9]|1[0-2])-([12]\\d{3})")) error += "- De geboortedatum voldoet niet aan de vereiste invoer\n";
+        if (!error.equals("")){
+            JOptionPane.showMessageDialog(frame, error,"Foute invoer", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         //Create Account according to fields
         Profile profile = new Profile(
                 Integer.parseInt(this.profileNumber.getField().getText()),
@@ -40,12 +53,6 @@ public class ProfileSaver implements ActionListener {
                 this.profileName.getField().getText(),
                 this.birthDate.getField().getText()
         );
-
-        if (!this.profileNumber.getField().getText().matches("[0-9]")
-                || !this.profileName.getField().getText().matches("[a-zA-Z]{1,50}")
-                || !this.birthDate.getField().getText().matches("([0-2][0-9])|(30|31)-(0[0-9])|(10|11|12)-[0-9]{4}")) {
-            System.out.println("The input values are incorrect.");
-        }
 
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {

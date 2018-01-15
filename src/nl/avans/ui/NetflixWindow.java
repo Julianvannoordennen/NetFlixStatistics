@@ -60,9 +60,9 @@ public class NetflixWindow implements Runnable {
         //Create menu items for menu
         ContainerContentHolder holder = new ContainerContentHolder();
         ContainerMenuButton[] menuItems = {
-            new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts(database))),
-            new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles(database))),
-            new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress(database))),
+            new ContainerMenuButton("Accounts   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAccounts(database, frame))),
+            new ContainerMenuButton("Profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProfiles(database, frame))),
+            new ContainerMenuButton("Progressie   ▶", new ContainerContentLoader(this.frame, holder, new ContainerProgress(database, frame))),
             new ContainerMenuButton("Gem. kijktijd   ▶", new ContainerContentLoader(this.frame, holder, new ContainerAverageWatchingTimes(database))),
             new ContainerMenuButton("16- Langst   ▶", new ContainerContentLoader(this.frame, holder, new ContainerLongestTimeYoungerThan16(database))),
             new ContainerMenuButton("Enkele profielen   ▶", new ContainerContentLoader(this.frame, holder, new ContainerSmallAccounts(database))),

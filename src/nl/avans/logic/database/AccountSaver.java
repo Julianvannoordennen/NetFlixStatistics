@@ -7,6 +7,7 @@ import nl.avans.ui.controls.NetflixLabelField;
 import nl.avans.ui.controls.NetflixList;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -21,8 +22,9 @@ public class AccountSaver implements ActionListener {
     private NetflixLabelField city;
     private NetflixList<String> list;
     private Database database;
+    private Frame frame;
 
-    public AccountSaver(NetflixLabelField subscriberNumber, NetflixLabelField name, NetflixLabelField street, NetflixLabelField postalCode, NetflixLabelField houseNumber, NetflixLabelField city, NetflixList<String> list, Database database) {
+    public AccountSaver(NetflixLabelField subscriberNumber, NetflixLabelField name, NetflixLabelField street, NetflixLabelField postalCode, NetflixLabelField houseNumber, NetflixLabelField city, NetflixList<String> list, Database database, Frame frame) {
         this.subscriberNumber = subscriberNumber;
         this.name = name;
         this.street = street;
@@ -31,13 +33,24 @@ public class AccountSaver implements ActionListener {
         this.city = city;
         this.list = list;
         this.database = database;
+        this.frame = frame;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //Create Account repository
-        AccountRepository accountRepository = new AccountRepository(this.database);
+        //Check if fields are correct
+        String error = "";
+        if (!this.subscriberNumber.getField().getText().matches("[0-9]{7}")) error += "- Subscriptienummer moet zeven tekens bevatten\n";
+        if (this.name.getField().getText().length() < 2 || this.name.getField().getText().length() > 50) error += "- Naam moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
+        if (this.street.getField().getText().length() < 2 || this.street.getField().getText().length() > 50) error += "- Straat moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
+        if (!this.postalCode.getField().getText().matches("[1-9][0-9]{3}[A-Z]{2}")) error += "- Postcode moet uit het volgende formaat bestaan: '1000AA'\n";
+        if (!this.houseNumber.getField().getText().matches("[1-9][0-9]{1,3}")) error += "- Het huisnummer moet hoger dan nul en lager dan 10.000 zijn\n";
+        if (this.city.getField().getText().length() < 2 || this.city.getField().getText().length() > 50) error += "- Stad moet minimaal twee en maximaal 50 letters bevatten, geen cijfers\n";
+        if (!error.equals("")) {
+            JOptionPane.showMessageDialog(frame, error,"Foute invoer", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         //Create Account according to fields
         Account account = new Account(
@@ -49,15 +62,8 @@ public class AccountSaver implements ActionListener {
                 this.city.getField().getText()
         );
 
-        /*
-        if (!this.subscriberNumber.getField().getText().matches("[0-9]{7}")
-                || !this.name.getField().getText().matches("[a-zA-Z\\.]{3,50}")
-                || !this.street.getField().getText().matches("[a-zA-Z]{3,50}")
-                || !this.postalCode.getField().getText().matches("[1-9][0-9]{3}[A-Z]{2}")
-                || !this.houseNumber.getField().getText().matches("[0-9]")
-                || !this.city.getField().getText().matches("[a-zA-Z]{1,60}")) {
-            System.out.println("The input values are incorrect.");
-        }*/
+        //Create Account repository
+        AccountRepository accountRepository = new AccountRepository(this.database);
 
         //Check if we need to create or update
         if (this.list.getList().getSelectedIndex() == 0) {
@@ -78,7 +84,6 @@ public class AccountSaver implements ActionListener {
             //Update
             accountRepository.update(account);
         }
-
 
         //Update list
         DefaultListModel<String> dlm = this.list.getDefaultListModel();

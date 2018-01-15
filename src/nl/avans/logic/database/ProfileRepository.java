@@ -84,7 +84,7 @@ public class ProfileRepository {
     public boolean update(Profile profile) {
         try
         {
-            String sqlQuery = "UPDATE Profiel SET Profielnaam='" + profile.getProfileName() + "', Geboortedatum=" + profile.getBirthDate() + " WHERE ProfielNummer=" + profile.getProfileNumber() + " AND Abonneenummer=" + profile.getSubscriberNumber();
+            String sqlQuery = "UPDATE Profiel SET Profielnaam='" + profile.getProfileName() + "', Geboortedatum='" + profile.getBirthDate() + "' WHERE ProfielNummer=" + profile.getProfileNumber() + " AND Abonneenummer=" + profile.getSubscriberNumber();
             return sqlConnection.executeSqlNoResult(sqlQuery);
         }
         catch(Exception e) {

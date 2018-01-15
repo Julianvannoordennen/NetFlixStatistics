@@ -7,10 +7,15 @@ import nl.avans.models.database.Profile;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
 
+import java.awt.*;
+
 public class ContainerProfiles extends ContainerContent {
 
-    public ContainerProfiles(Database database) {
+    private Frame frame;
+
+    public ContainerProfiles(Database database, Frame frame) {
         super("Profielen", database);
+        this.frame = frame;
         this.createComponents();
     }
 
@@ -34,7 +39,7 @@ public class ContainerProfiles extends ContainerContent {
         NetflixLabelField profileNumber = new NetflixLabelField("Profielnummer:   ", this);
         NetflixLabelDrop<Integer> subscriberNumber = new NetflixLabelDrop<Integer>("Subscriptienummer:   ", this);
         NetflixLabelField profileName = new NetflixLabelField("Profielnaam:   ", this);
-        NetflixLabelField birthDate = new NetflixLabelField("Geboortedatum:   ", this);
+        NetflixLabelField birthDate = new NetflixLabelField("Geboortedatum (dd-mm-yyyy):   ", this);
         this.add(profileNumber);
         this.add(subscriberNumber);
         this.add(profileName);
@@ -55,7 +60,7 @@ public class ContainerProfiles extends ContainerContent {
         listContent.getList().addListSelectionListener(profileSelector);
         listContent.getList().setSelectedIndex(0);
 
-        ProfileSaver saver = new ProfileSaver(profileNumber, subscriberNumber, profileName, birthDate,listContent,this.database);
+        ProfileSaver saver = new ProfileSaver(profileNumber, subscriberNumber, profileName, birthDate,listContent,this.database, frame);
         saveDelete.getSave().addActionListener(saver);
 
         ProfileDeleter deleter = new ProfileDeleter(profileNumber, listContent,this.database);
