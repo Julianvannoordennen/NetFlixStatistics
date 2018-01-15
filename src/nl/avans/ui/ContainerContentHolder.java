@@ -6,6 +6,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 
+//for the content of the container
 public class ContainerContentHolder extends JPanel {
 
     public ContainerContentHolder() {

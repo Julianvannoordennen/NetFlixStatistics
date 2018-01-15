@@ -9,6 +9,7 @@ import nl.avans.ui.controls.NetflixComboBox;
 import nl.avans.ui.controls.NetflixLabel;
 import nl.avans.ui.controls.NetflixList;
 
+//shows what films have been watched 100%
 public class ContainerFullWatchedFilm extends ContainerContent {
 
     public ContainerFullWatchedFilm(Database database) {

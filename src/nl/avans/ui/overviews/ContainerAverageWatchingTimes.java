@@ -15,6 +15,7 @@ import nl.avans.ui.controls.NetflixList;
 
 import javax.swing.*;
 
+// to see how far something has been watched on average
 public class ContainerAverageWatchingTimes extends ContainerContent {
 
     public ContainerAverageWatchingTimes(Database database) {

@@ -9,6 +9,7 @@ import nl.avans.ui.controls.*;
 
 import java.awt.*;
 
+//for the "Progressie" part of the program
 public class ContainerProgress extends ContainerContent {
 
     private Frame frame;

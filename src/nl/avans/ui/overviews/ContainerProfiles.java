@@ -9,6 +9,7 @@ import nl.avans.ui.controls.*;
 
 import java.awt.*;
 
+//page for watching all profiles
 public class ContainerProfiles extends ContainerContent {
 
     private Frame frame;

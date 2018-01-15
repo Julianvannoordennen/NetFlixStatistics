@@ -3,6 +3,7 @@ package nl.avans.ui;
 import javax.swing.*;
 import java.awt.*;
 
+//Shows the developers of the application
 public class ContainerCredits extends JPanel {
 
     public ContainerCredits() {

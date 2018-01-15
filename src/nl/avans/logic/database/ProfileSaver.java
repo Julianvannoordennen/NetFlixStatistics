@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// to create or update a profile in the right way
 public class ProfileSaver implements ActionListener {
 
     private NetflixLabelField profileNumber;

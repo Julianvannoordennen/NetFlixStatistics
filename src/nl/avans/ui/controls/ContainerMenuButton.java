@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+//for the menu buttons
 public class ContainerMenuButton extends JLabel implements MouseListener  {
 
     public ContainerMenuButton(String itemText, ContainerContentLoader event) {

@@ -5,7 +5,7 @@ import nl.avans.logic.database.FilmRepository;
 import nl.avans.models.database.Film;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.NetflixLabelField;
-
+//shows the longest film for kids under 16
 public class ContainerLongestTimeYoungerThan16 extends ContainerContent {
 
     public ContainerLongestTimeYoungerThan16(Database database) {

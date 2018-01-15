@@ -5,7 +5,7 @@ import nl.avans.ui.NetflixWindow;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-
+// dropdown base
 public class NetflixLabelDrop<E> extends JPanel {
 
     private NetflixLabel label;

@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// delete watched movies/series from a subscriber
 public class WatchedDeleter implements ActionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;

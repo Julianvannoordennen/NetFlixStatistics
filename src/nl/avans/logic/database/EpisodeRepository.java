@@ -5,6 +5,7 @@ import nl.avans.models.database.Episode;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+//To create, update and delete an episode.
 public class EpisodeRepository {
     private Database sqlConnection;
 
@@ -12,6 +13,7 @@ public class EpisodeRepository {
         this.sqlConnection = sqlConnection;
     }
 
+    //All episodes according to the connected database
     public ArrayList<Episode> readAll() {
         ArrayList<Episode> lijst = new ArrayList<>();
         try {
@@ -41,7 +43,7 @@ public class EpisodeRepository {
         }
         return episode;
     }
-
+// to create an episode
     public boolean create(Episode episode) {
         try
         {
@@ -53,7 +55,7 @@ public class EpisodeRepository {
         }
         return false;
     }
-
+//to delete an episode
     public boolean delete(Episode episode) {
         if(episode==null) return false;
         return delete(episode.getEpisodeId());

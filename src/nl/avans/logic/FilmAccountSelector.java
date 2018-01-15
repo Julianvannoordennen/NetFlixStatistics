@@ -11,6 +11,7 @@ import nl.avans.ui.controls.NetflixList;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// show what film have been watched in an account
 public class FilmAccountSelector implements ActionListener {
 
     private NetflixComboBox<String> accountSelector;

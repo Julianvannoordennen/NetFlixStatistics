@@ -37,7 +37,7 @@ public class AverageWatchingTimesViewer implements ActionListener {
         //Create watched repository
         WatchedRepository watchedRepository = new WatchedRepository(this.database);
 
-        //Get serie
+        //Get series
         Series serie = new SeriesRepository(this.database).readAll().get(this.serieSelector.getSelectedIndex());
 
         //Get account and data

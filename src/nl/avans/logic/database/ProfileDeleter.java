@@ -7,7 +7,7 @@ import nl.avans.ui.controls.NetflixList;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+// for deleting a profile
 public class ProfileDeleter implements ActionListener {
 
     private NetflixLabelField profileNumber;

@@ -8,8 +8,9 @@ import nl.avans.logic.database.Database;
 import nl.avans.models.database.Account;
 import nl.avans.ui.ContainerContent;
 import nl.avans.ui.controls.*;
-
 import java.awt.*;
+
+//The accountpage layout
 
 public class ContainerAccounts extends ContainerContent {
 

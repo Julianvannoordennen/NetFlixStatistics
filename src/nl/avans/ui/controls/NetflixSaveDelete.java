@@ -5,6 +5,7 @@ import nl.avans.ui.NetflixWindow;
 import javax.swing.*;
 import java.awt.*;
 
+//for the save and delete button
 public class NetflixSaveDelete extends JPanel {
 
     private JButton saveButton;

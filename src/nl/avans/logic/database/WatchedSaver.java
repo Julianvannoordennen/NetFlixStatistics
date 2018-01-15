@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// to add a new watched film/series
 public class WatchedSaver implements ActionListener {
 
     private NetflixLabelDrop<Integer> subscriberNumber;
