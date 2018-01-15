@@ -5,13 +5,14 @@ import nl.avans.models.database.Account;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+// communicates with the database about the account table, you can add, delete and change accounts here as well.
 public class AccountRepository {
     private Database sqlConnection;
 
     public AccountRepository(Database sqlConnection) {
         this.sqlConnection = sqlConnection;
     }
-
+// Alle Accounts in een lijst
     public ArrayList<Account> readAll() {
         ArrayList<Account> lijst = new ArrayList<>();
         try {
@@ -25,7 +26,7 @@ public class AccountRepository {
         }
         return lijst;
     }
-
+// All accounts with 1 profile in them
     public ArrayList<Account> readAccountsWithOneProfile() {
         ArrayList<Account> lijst = new ArrayList<>();
         try {
@@ -54,7 +55,7 @@ public class AccountRepository {
         }
         return account;
     }
-
+//create an account
     public boolean create(Account account) {
         try
         {
@@ -66,7 +67,7 @@ public class AccountRepository {
         }
         return false;
     }
-
+// change an account
     public boolean update(Account account) {
         try
         {
@@ -78,12 +79,12 @@ public class AccountRepository {
         }
         return false;
     }
-
+//delete an account
     public boolean delete(Account account) {
         if(account==null) return false;
         return delete(account.getSubscriberNumber());
     }
-
+    
     public boolean delete(int subscriberNumber) {
         try
         {
