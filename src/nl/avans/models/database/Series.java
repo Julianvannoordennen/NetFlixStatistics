@@ -1,5 +1,6 @@
 package nl.avans.models.database;
 
+//Contains every type of information added to series
 public class Series {
     private String series;
     private String season;
@@ -16,7 +17,7 @@ public class Series {
         this.genre = genre;
         this.resembles = resembles;
     }
-
+    //Returns all information entered about series
     public String getSeries() {
         return this.series;
     }
@@ -44,7 +45,7 @@ public class Series {
     public void setSeries(String series) {
         this.series = series;
     }
-
+    //For setting the information
     public void setSeason(String season) {
         this.season = season;
     }
