@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//To delete an account
 public class AccountDeleter implements ActionListener {
 
     private NetflixLabelField subscriberNumber;

@@ -1,5 +1,6 @@
 package nl.avans.models.database;
 
+//for showing what someone has watched
 public class Watched {
     private int subscriberNumber;
     private int profileNumber;
@@ -12,7 +13,7 @@ public class Watched {
         this.watched = watched;
         this.percentage = percentage;
     }
-
+// to return information about the subscriber and the series/film watched
     public int getSubscriberNumber() {
         return this.subscriberNumber;
     }
@@ -29,6 +30,7 @@ public class Watched {
         return this.percentage;
     }
 
+    // to set the information
     public void setSubscriberNumber(int subscriberNumber) {
         this.subscriberNumber = subscriberNumber;
     }
